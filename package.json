@@ -1,18 +1,21 @@
 {
-  "name": "aprg-project",
+  "name": "cloud",
   "version": "1.0.0",
-  "description": "aprg project for developing a web application",
+  "description": "",
   "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^2.7.1",
-    "express": "^4.17.1",
-    "sqlite3": "^4.1.0"
-  }
+  "license": "ISC"
 }
