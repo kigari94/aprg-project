@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registration</title>
+        <title>Start</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
     </head>
     <body>
+        <!-- ToDo: Validierung, ob username schon vergeben ist -->
         <h1>Registration</h1>
         <form action="/register" method="POST">
             <div>
@@ -14,6 +15,15 @@
                 <input type="email" name="email" placeholder="E-Mail" required>
                 <input type="password" name="password" placeholder="Password" required><br>
                 <input type="submit" value="Sign Up">
+            </div>
+        </form><br>
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <div>
+                <p>Please login</p>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="submit" value="Login">
             </div>
         </form>
     </body>

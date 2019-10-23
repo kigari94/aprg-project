@@ -1,1 +1,17 @@
 This is the git repo for the aprg project
+Collection of usefule hints:
+
+Git Tutorial:
+https://rogerdudler.github.io/git-guide/index.de.html
+
+Node Commands:
+npm install -> installiert fehlende Dependencies
+node server.js oder alternativ npm start -> startet den Webserver
+
+Im Falle einer fehlenden Dependency (not for our project)
+npm init
+npm install express --save
+npm install ejs --save
+npm install body-parser --save
+npm install sqlite3 --save
+npm install express-session --save

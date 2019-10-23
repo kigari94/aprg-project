@@ -8,8 +8,28 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.engine('.ejs', require('ejs').__express);
 app.set('view engine','ejs');
 
-// Einbindung des views folder für ejs files
+// Einbindung des views folder für die ejs files
 app.use(express.static(__dirname + '/views'));
+
+// Ausgabe des Login- bzw. Registrieren-Formulars
+app.get('/start', function(req, res){
+    res.render('start');
+});
+
+// Ausgabe der Account-Page
+app.get('/account', function(req, res){
+    res.render('account');
+});
+
+// Ausgabe der Home-Page
+app.get('/home', function(req, res){
+    res.render('home');
+});
+
+// Ausgabe der Upload-Page
+app.get('/upload', function(req, res){
+    res.render('upload');
+});
 
 // Initialisierung des Cookie Parsers
 const cookieParser = require('cookie-parser');
@@ -38,17 +58,17 @@ let db = new sqlite3.Database('web.db', function(err) {
     if (err) { 
         console.error(err); 
     } else {
-        console.log("Verbindung zur Datenbank wurde erfolgerich hergestellt.")
+        console.log("Verbindung zur Web-Datenbank wurde erfolgreich hergestellt.")
     }
 });
 
-//Auswertung nach der Registrierung
+// Auswertung nach der Registrierung
 app.post('/register', function(req, res) {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
-    //SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
+    // SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
     let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${password}");`
     db.run(sql, function(err) {
         if (err) { 
@@ -60,6 +80,7 @@ app.post('/register', function(req, res) {
             });
         }
     });
+});
 
 // Aufruf Login
 app.post('/login', function(req, res){
@@ -81,6 +102,8 @@ app.post('/login', function(req, res){
             });
         }       
     });
-})
-
 });
+
+// ToDo: Änderung der Datensätze für username, email und password
+
+// ToDo: Funktion zur Speicherung der Bilddateien 
