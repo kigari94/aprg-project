@@ -107,3 +107,22 @@ app.post('/login', function(req, res){
 // ToDo: Änderung der Datensätze für username, email und password
 
 // ToDo: Funktion zur Speicherung der Bilddateien 
+app.post('/upload', function(req, res) {
+    const file = req.body.file;
+    const title = req.body.title;
+    
+    // SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
+    let sql = `INSERT INTO files (username, file, title, date) VALUES ("${username}", "${file}", "${title}", date(now));`
+    db.run(sql, function(err) {
+        if (err) { 
+            console.error(err);
+        } else {
+            res.render('home', { 
+                username: req.body.username,
+                title: req.body.title
+            });
+        }
+    });
+});
+
+// ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
