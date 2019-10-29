@@ -70,7 +70,8 @@ let db = new sqlite3.Database('web.db', function(err) {
     }
 });
 
-// Auswertung nach der Registrierung
+// Auswertung der Registrierung
+// ToDo: User handling bei erneuter Eingabe des selben usernames
 app.post('/register', function(req, res) {
     const username = req.body.username;
     const email = req.body.email;
