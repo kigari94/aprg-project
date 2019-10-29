@@ -31,6 +31,14 @@ app.get('/upload', function(req, res){
     res.render('upload');
 });
 
+// 404 Error handling
+app.get('*', function(req, res){
+    res.render('error', {
+        title: '404 Seite nicht gefunden',
+        error: 'Die Seite konnte leider nicht gefunden werden. Überprüfe bitte, ob die Adresse stimmt.'
+    });
+});
+
 // Initialisierung des Cookie Parsers
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
