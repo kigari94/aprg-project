@@ -14,7 +14,7 @@
             You want to change your username?<br>
             <!-- Please insert here your old username first:  <input type="text" name="username" placeholder="Old Username" required><br> -->
             Insert your new username here:<br>
-            <input type="text" name="newusername" placeholder="New Username" required><br>
+            <input type="text" name="new_username" placeholder="New Username" required><br>
             <input type="submit" value="Mama, I want to be called differently!"> <br>
             </form>
 
@@ -22,15 +22,16 @@
             Your mailadress:<br>
             <%= email %><br>
             New mailadress? Change it here:<br>
-            <input type="email" name="new email" placeholder="New E-Mail" required><input type="submit" value="Send me a mail!"><br>
+            <input type="email" name="new_email" placeholder="New E-Mail" required><input type="submit" value="Send me a mail!"><br>
             <!-- We sent you a mail to verify your new mailadress.-->
             </form>
 
             <form action="/change_password" method="POST"> 
             You want to change your password?
             Enter your new password here:
-            <input type="password" name="new password" placeholder="New Password" required><br>
-            <input type="submit" value="Let´se go!"
+            <input type="password" name="new_password" placeholder="New Password" required>
+            Repeat:  <input type="password" name="new_password_repeat" placeholder="New Password Repeat" required> <br>
+            <input type="submit" value="Let´se go!">
             </form>
 
             <form action="/delete_account" method="POST"> 
