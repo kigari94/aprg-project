@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Change User Data</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
+    </head>
+    <body>
+        <p>Hello, my dear blob!<br>
+
+            You signed in as: <br>
+            <%= username %><br>
+            You want to change your username?<br>
+            Insert your new username here:<br>
+            <input type="text" name="newusername" placeholder="New Username" required><br>
+
+            Your mailadress:<br>
+            <%= email %><br>
+            New mailadress? Change it here:<br>
+            <input type="email" name="new email" placeholder="New E-Mail" required><br>
+
+            You want to change your password?
+            Enter your new password here:
+            <input type="password" name="new password" placeholder="New Password" required><br>
+
+            You want to delete your account?<br>
+            That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family. <br>
+            <input type="submit" value="Let me go"> <br>
+
+            <a href="/home">Yay, back to random!</a>
+        </p>
+    </body>
+</html>
