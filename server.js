@@ -1,6 +1,7 @@
 // Initialisierung der Module
 const express = require('express');
 const app =  express();
+const bcrypt = require('bcrypt');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
@@ -76,6 +77,9 @@ app.post('/register', function(req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
+    // Verschluesselung des Passwortes
+    let hash = bcrypt.hashSync(password, 12);
+
     let check = `SELECT * FROM users WHERE username == "${username}";`
 
     db.all(check, function(err, rows){
@@ -83,7 +87,7 @@ app.post('/register', function(req, res) {
             res.end("Der eingegebene Username existiert bereits!");
         }else{
             // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
-            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${password}");`
+            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
 
             db.run(sql,function(err) {
                 if (err) { 
@@ -103,20 +107,30 @@ app.post('/register', function(req, res) {
 app.post('/login', function(req, res){
     const username = req.body.username;
     const password = req.body.password;
+    const login = false;
 
     // Abgleich username und passwort mit der Datenbank
-    let sql = `SELECT * FROM users WHERE username="${username}" AND password="${password}"`;
+    let sql = `SELECT * FROM users WHERE username="${username}"`;
     db.get(sql, function(err, row){
         if(err){
             console.error(err);
         }else{
             req.session.username = row.username;
-            // req.session['username'] = row.username; <- alternative
             req.session.email = row.email;
-            res.render('login_response', { 
-                username: req.session.username,
-                email: req.session.email
-            });
+            if(bcrypt.compareSync(password, row.password)){
+                res.render('login_response', { 
+                    username: req.session.username,
+                    email: req.session.email,
+                    login: true
+                });            
+            }else{
+                res.render('login_response', {
+                    username: '',
+                    email: '',
+                    message: 'Wrong username or password. Please try again.',
+                    login: false
+                });
+            }
         }       
     });
 });

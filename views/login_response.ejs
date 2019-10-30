@@ -4,11 +4,13 @@
         <title></title>
     </head>
     <body>
-        <p>Du bist eingeloggt als 
-        <%= username %>
-        Deine E-Mail lautet
-        <%= email %><br>
-        <a href="/home">Weiter</a>
-    </p>
+        <% if (<%= login %> == true){ %>
+            <p>Du bist eingeloggt als <%= username %>
+                Deine E-Mail lautet <%= email %><br>
+                <a href="/home">Weiter</a>
+            <p>
+        <% } %> else { %> 
+            <%= message %>
+        <% } %>
     </body>
 </html>
