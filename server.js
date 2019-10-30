@@ -71,21 +71,29 @@ let db = new sqlite3.Database('web.db', function(err) {
 });
 
 // Auswertung der Registrierung
-// ToDo: User handling bei erneuter Eingabe des selben usernames
 app.post('/register', function(req, res) {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
-    // SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
-    let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${password}");`
-    db.run(sql, function(err) {
-        if (err) { 
-            console.error(err);
-        } else {
-            res.render('register_response', { 
-                username: req.body.username,
-                email: req.body.email
+    let check = `SELECT * FROM users WHERE username == "${username}";`
+
+    db.all(check, function(err, rows){
+        if(rows.length != 0){
+            res.end("Der eingegebene Username existiert bereits!");
+        }else{
+            // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
+            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${password}");`
+
+            db.run(sql,function(err) {
+                if (err) { 
+                    console.error(err);
+                } else {
+                    res.render('register_response', { 
+                        username: req.body.username,
+                        email: req.body.email
+                    });
+                }
             });
         }
     });
@@ -114,6 +122,7 @@ app.post('/login', function(req, res){
 });
 
 // ToDo: Änderung der Datensätze für username, email und password
+// ToDo: Loeschen des users und aller dazugehörigen Datensätze
 
 // ToDo: Funktion zur Speicherung der Bilddateien 
 app.post('/upload', function(req, res) {
