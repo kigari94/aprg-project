@@ -15,3 +15,6 @@ npm install ejs --save
 npm install body-parser --save
 npm install sqlite3 --save
 npm install express-session --save
+
+Debugger:
+node --inspect server
