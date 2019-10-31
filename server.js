@@ -107,31 +107,24 @@ app.post('/register', function(req, res) {
 app.post('/login', function(req, res){
     const username = req.body.username;
     const password = req.body.password;
-    const login = false;
 
     // Abgleich username und passwort mit der Datenbank
     let sql = `SELECT * FROM users WHERE username="${username}"`;
     db.get(sql, function(err, row){
         if(err){
             console.error(err);
+        }
+        req.session.username = row.username;
+        req.session.email = row.email;
+        
+        if(bcrypt.compareSync(password, row.password)){
+            res.render('login_response', { 
+                username: req.session.username,
+                email: req.session.email
+            });            
         }else{
-            req.session.username = row.username;
-            req.session.email = row.email;
-            if(bcrypt.compareSync(password, row.password)){
-                res.render('login_response', { 
-                    username: req.session.username,
-                    email: req.session.email,
-                    login: true
-                });            
-            }else{
-                res.render('login_response', {
-                    username: '',
-                    email: '',
-                    message: 'Wrong username or password. Please try again.',
-                    login: false
-                });
-            }
-        }       
+            res.end('Wrong username or password. Please try again.');            
+        }
     });
 });
 
