@@ -60,6 +60,19 @@ app.get('/upload', function(req, res){
     res.render('upload');
 });
 
+// Entry for changeuserdata
+app.get('/changeuserdata', function(req,res){
+    if(typeof req.session.username === 'undefined' || typeof req.session.email === 'undefined'){
+            console.log(req.session.username);
+            res.render('start');
+    }else{
+        res.render('changeuserdata',{
+            username: req.session.username,
+            email: req.session.email
+        }) 
+    }
+});
+
 // 404 Error handling
 app.get('*', function(req, res){
     res.render('error', {
@@ -126,7 +139,100 @@ app.post('/login', function(req, res){
 });
 
 // ToDo: Änderung der Datensätze für username, email und password
+
+// Post for change_username
+app.post('/change_username', function(req,res){
+    const new_username = req.body.new_username;
+    
+    let sql = `UPDATE users
+    SET username = "${new_username}"
+    WHERE username = "${req.session.username}";`
+
+    db.get(sql, function(err, row){
+        if(err){
+            res.end('somthing went wrong or user already exists');
+            console.error(err);
+        }else{
+            req.session.username = new_username
+            
+            res.render('changeuserdata',{
+                username: new_username,
+                email: req.session.email
+            })
+        }
+    });
+});
+
+//Post for new_email
+app.post('/change_mailadress', function(req,res){
+    const new_email = req.body.new_email;
+
+    let sql = `UPDATE users
+    SET email = "${new_email}"
+    WHERE username = "${req.session.username}";`
+
+    db.get(sql, function(err, row){
+        if(err){
+            res.end(err);
+            console.error(err);
+        }else{
+            res.render('changeuserdata',{
+                username: req.session.username,
+                email: new_email
+            })
+        }
+    });
+});
+
+//Post for new_password
+app.post('/change_password', function(req,res){
+    const new_password = req.body.new_password;
+    const new_password_repeat = req.body.new_password_repeat;
+    
+
+    if(new_password === new_password_repeat){
+        let hash = bcrypt.hashSync(new_password, 12);
+        let sql = `UPDATE users
+        SET password = "${hash}"
+        WHERE username = "${req.session.username}";`
+
+        db.get(sql, function(err, row){
+            if(err){
+                res.end(err);
+                console.error(err);
+            }else{
+                /*res.render('changeuserdata',{
+                    username: req.session.username,
+                    email: req.session.email
+                })*/
+                res.end('password was changed');
+            }
+            });
+    }else{
+        res.end('password and password repeat didnt match blub')
+    }
+});
+
 // ToDo: Loeschen des users und aller dazugehörigen Datensätze
+app.post('/delete_account', function(req,res){
+    let sql = `DELETE FROM users WHERE username = "${req.session.username}";`
+
+    db.get(sql, function(err, row){
+        if(err){
+            res.end(err);
+            console.error(err);
+        }else{
+            req.session.destroy(function(err) {
+                if(err){
+                    console.log(err);
+                }else
+                {
+                    res.end('user has been succesfully destroyed blub u dead');
+                }
+            });
+        }
+    });
+});
 
 // ToDo: Funktion zur Speicherung der Bilddateien 
 app.post('/upload', function(req, res) {
