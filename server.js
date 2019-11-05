@@ -86,31 +86,35 @@ app.post('/register', function(req, res) {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
+    const re_password = req.body.re_password;
+    if(password === re_password){
+        // Verschluesselung des Passwortes
+        let hash = bcrypt.hashSync(password, 12);
 
-    // Verschluesselung des Passwortes
-    let hash = bcrypt.hashSync(password, 12);
+        let check = `SELECT * FROM users WHERE username == "${username}";`
 
-    let check = `SELECT * FROM users WHERE username == "${username}";`
+        db.all(check, function(err, rows){
+            if(rows.length != 0){
+                res.end("Der eingegebene Username existiert bereits!");
+            }else{
+                // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
+                let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
 
-    db.all(check, function(err, rows){
-        if(rows.length != 0){
-            res.end("Der eingegebene Username existiert bereits!");
-        }else{
-            // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
-            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
-
-            db.run(sql,function(err) {
-                if (err) { 
-                    console.error(err);
-                } else {
-                    res.render('register_response', { 
-                        username: req.body.username,
-                        email: req.body.email
-                    });
-                }
-            });
-        }
-    });
+                db.run(sql,function(err) {
+                    if (err) { 
+                        console.error(err);
+                    } else {
+                        res.render('register_response', { 
+                            username: req.body.username,
+                            email: req.body.email
+                        });
+                    }
+                });
+            }
+        });
+    }else{
+        res.end('Password did not match with Re_Password');
+    }
 });
 
 // Aufruf Login
@@ -254,3 +258,4 @@ app.post('/upload', function(req, res) {
 });
 
 // ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
+
