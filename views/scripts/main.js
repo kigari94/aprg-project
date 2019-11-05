@@ -1,5 +1,5 @@
 // https://www.w3schools.com/html/html5_draganddrop.asp
-
+/*
 function allowDrop(ev) {
     ev.preventDefault();
   }
@@ -13,3 +13,4 @@ function allowDrop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
   }
+*/
