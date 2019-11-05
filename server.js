@@ -103,16 +103,16 @@ app.post('/register', function(req, res) {
     const email = req.body.email;
     const password = req.body.password;
     const re_password = req.body.re_password;
+    
     if(password === re_password){
         // Verschluesselung des Passwortes
         let hash = bcrypt.hashSync(password, 12);
 
         let check = `SELECT * FROM users WHERE username == "${username}";`
 
-<<<<<<< HEAD
         db.all(check, function(err, rows){
             if(rows.length != 0){
-                res.end("Der eingegebene Username existiert bereits!");
+                res.end("The user is already existing!");
             }else{
                 // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
                 let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
@@ -121,9 +121,9 @@ app.post('/register', function(req, res) {
                     if (err) { 
                         console.error(err);
                     } else {
-                        res.render('register_response', { 
-                            username: req.body.username,
-                            email: req.body.email
+                        res.render('home', { 
+                            username: req.session.username,
+                            email: req.session.email
                         });
                     }
                 });
@@ -132,30 +132,6 @@ app.post('/register', function(req, res) {
     }else{
         res.end('Password did not match with Re_Password');
     }
-=======
-    let check = `SELECT * FROM users WHERE username == "${username}";`
-
-    db.all(check, function(err, rows){
-        if(rows.length != 0){
-            res.end("The user is already existing!");
-        }else{
-            // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
-            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
-
-            db.run(sql,function(err) {
-                
-                if (err) { 
-                    console.error(err);
-                } else {
-                    res.render('home', { 
-                        username: req.session.username,
-                        email: req.session.email
-                    });
-                }
-            });
-        }
-    });
->>>>>>> backendFeaturesKigari
 });
 
 // Aufruf Login
@@ -182,8 +158,6 @@ app.post('/login', function(req, res){
         }
     });
 });
-
-// ToDo: Änderung der Datensätze für username, email und password
 
 // Post for change_username
 app.post('/change_username', function(req,res){
@@ -258,7 +232,7 @@ app.post('/change_password', function(req,res){
     }
 });
 
-// ToDo: Loeschen des users und aller dazugehörigen Datensätze
+// Loeschen des users und aller dazugehörigen Datensätze
 app.post('/delete_account', function(req,res){
     let sql = `DELETE FROM users WHERE username = "${req.session.username}";`
 
