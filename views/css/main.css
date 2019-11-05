@@ -1,1 +1,73 @@
-/* The CSS Code goes here */
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #212121
+}
+.box {
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #ba3258;
+  }
+#title{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+    color: #ba3258;
+}
+h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+  .box input[type = "submit"] {
+    background: #ba3258;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+    outline: none;
+    border-radius: 15px;
+  }
+  .box input[type = "text"],.box input[type  = "email"],.box input[type = "password"]{
+    border: 0;
+    background: #212121;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #ba3258;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25;
+}
+    .box input[type = "text"]:focus,.box input[type  = "email"]:focus,.box input[type = "password"]:focus{
+        width: 280px;
+}
+  .box label {
+    cursor:pointer;
+    color: white;
+  }
+  #form-switch {
+    display:none
+  }
+  #register-form {
+    display:none;
+  }
+  #form-switch:checked~#register-form {
+    display:block
+  }
+  #form-switch:checked~#login-form {
+    display:none
+  }
+
+  
