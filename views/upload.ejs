@@ -9,7 +9,18 @@
         <!-- Here goes the content -->
         <!-- ToDo: Prüfen, ob die File ein .jpg, .png, oder .gif ist -->
         <!-- ToDo: File size überprüfen max. größe -->
-        <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <script language="javascript" type="text/javascript" src="scripts/main.js"></script>
+        <!-- <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <script language="javascript" type="text/javascript" src="scripts/main.js"></script> -->
+        <form class="box" method="post" action="/upload" enctype="multipart/form-data">
+            <h1>Upload your Blobbpics!</h1>
+            <div class="box__input">
+              <input class="inputfile" type="file" name="file" id="file" accept="image/x-png,image/gif,image/jpeg"/>
+              <label for="file"><strong>Choose a file</strong></label>
+              <button class="box__button" type="submit">Upload</button>
+            </div>
+            <div class="box__uploading">Uploading&hellip;</div>
+            <div class="box__success">Done!</div>
+            <div class="box__error">Error! <span></span>.</div>
+          </form>
     </body>
 </html>

@@ -4,6 +4,8 @@ body{
     font-family: sans-serif;
     background: #212121
 }
+
+/* DESIGN LOGIN / REGISTER */
 .box {
     width: 300px;
     padding: 40px;
@@ -28,7 +30,7 @@ h1{
     text-transform: uppercase;
     font-weight: 500;
 }
-  .box input[type = "submit"] {
+  .box input[type = "submit"]{
     background: #ba3258;
     color: white;
     padding: 10px 20px;
@@ -70,4 +72,43 @@ h1{
     display:none
   }
 
-  
+/* UPLOAD DESIGN (USES THE LOGIN BOX LAYOUT) */
+.box__button{
+    background: #ba3258;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+    outline: none;
+    border-radius: 15px;
+}
+.inputfile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label{
+    width: 70%;
+    height: 70%;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    border: 2px solid #ba3258;
+    background-color:#212121;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+.inputfile:focus + label,
+.inputfile + label:hover{
+    background-color: #ba3258;
+}
+
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
