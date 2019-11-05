@@ -6,6 +6,7 @@
             <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
     </head>
     <body>
+<<<<<<< HEAD
             <input type='checkbox' id='form-switch'>
             <form class="box" id='login-form' action="/login" method='POST'>
                 <h1 id="title">BLOBBFISH!</h1>
@@ -25,5 +26,27 @@
               <input type='submit' value="Sign Up">
               <label for='form-switch'>Already Member ?</label>
             </form>
+=======
+        <!-- ToDo: Validierung, ob username schon vergeben ist -->
+        <h1>Sign up</h1>
+        <form action="/register" method="POST">
+            <div>
+                <p>Please sign up:</p>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="E-Mail" required>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="submit" value="Sign Up">
+            </div>
+        </form><br>
+        <h1>Sign in</h1>
+        <form action="/login" method="POST">
+            <div>
+                <p>Please sign in:</p>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="submit" value="Login">
+            </div>
+        </form>
+>>>>>>> 3757c1a868ceb63cc01b6d1972b4043dcbaa750d
     </body>
 </html>
