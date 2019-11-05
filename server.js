@@ -12,6 +12,34 @@ app.set('view engine','ejs');
 // Einbindung des views folder für die ejs files
 app.use(express.static(__dirname + '/views'));
 
+// Initialisierung des Cookie Parsers
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// Initialisierung von express sessions
+const session = require('express-session');
+app.use(session({
+    secret: 'loggedIn',
+    resave: false,
+    saveUninitialized: true
+}));
+
+// Webserver starten
+app.listen(3000, function(){
+    console.log('listening on 3000');
+});
+
+// Verbindung zur Datenbank
+const sqlite3 = require('sqlite3').verbose();
+
+let db = new sqlite3.Database('web.db', function(err) {
+    if (err) { 
+        console.error(err); 
+    } else {
+        console.log("Verbindung zur Web-Datenbank wurde erfolgreich hergestellt.")
+    }
+});
+
 // Ausgabe des Login- bzw. Registrieren-Formulars
 app.get('/start', function(req, res){
     res.render('start');
@@ -38,37 +66,6 @@ app.get('*', function(req, res){
         title: '404 Seite nicht gefunden',
         error: 'Die Seite konnte leider nicht gefunden werden. Überprüfe bitte, ob die Adresse stimmt.'
     });
-});
-
-// Initialisierung des Cookie Parsers
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
-// Initialisierung von express sessions
-const session = require('express-session');
-app.use(session({
-    secret: 'loggedIn',
-    resave: false,
-    saveUninitialized: true
-}));
-
-// Webserver starten
-app.listen(3000, function(){
-    console.log('listening on 3000');
-});
-
-// Einbindung des public folder für html und css
-app.use(express.static(__dirname + '/public'));
-
-// Verbindung zur Datenbank
-const sqlite3 = require('sqlite3').verbose();
-
-let db = new sqlite3.Database('web.db', function(err) {
-    if (err) { 
-        console.error(err); 
-    } else {
-        console.log("Verbindung zur Web-Datenbank wurde erfolgreich hergestellt.")
-    }
 });
 
 // Auswertung der Registrierung
