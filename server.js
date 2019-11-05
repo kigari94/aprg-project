@@ -36,35 +36,51 @@ let db = new sqlite3.Database('web.db', function(err) {
     if (err) { 
         console.error(err); 
     } else {
-        console.log("Verbindung zur Web-Datenbank wurde erfolgreich hergestellt.")
+        console.log("Connection to Web-Database successfully established.")
     }
 });
 
 // Ausgabe des Login- bzw. Registrieren-Formulars
 app.get('/start', function(req, res){
-    res.render('start');
+    if (!req.session.username){
+        res.render('start');
+    }else{
+        res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
 });
 
 // Ausgabe der Account-Page
 app.get('/account', function(req, res){
-    res.render('account');
+    if (!req.session.username){
+        res.render('start', {authDeniedMessage: "Not logged in yet!"});
+    }else{
+        res.render('account', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
 });
 
 // Ausgabe der Home-Page
 app.get('/home', function(req, res){
-    res.render('home');
+    if (!req.session.username){
+        res.render('start', {authDeniedMessage: "Not logged in yet!"});
+    }else{
+        res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
 });
 
 // Ausgabe der Upload-Page
 app.get('/upload', function(req, res){
-    res.render('upload');
+    if (!req.session.username){
+        res.render('start', {authDeniedMessage: "Not logged in yet!"});
+    }else{
+        res.render('upload', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
 });
 
 // Entry for changeuserdata
 app.get('/changeuserdata', function(req,res){
-    if(typeof req.session.username === 'undefined' || typeof req.session.email === 'undefined'){
+    if(!req.session.username){
             console.log(req.session.username);
-            res.render('start');
+            res.render('start', {authDeniedMessage: "Not logged in yet!"});
     }else{
         res.render('changeuserdata',{
             username: req.session.username,
@@ -93,6 +109,7 @@ app.post('/register', function(req, res) {
 
         let check = `SELECT * FROM users WHERE username == "${username}";`
 
+<<<<<<< HEAD
         db.all(check, function(err, rows){
             if(rows.length != 0){
                 res.end("Der eingegebene Username existiert bereits!");
@@ -115,6 +132,30 @@ app.post('/register', function(req, res) {
     }else{
         res.end('Password did not match with Re_Password');
     }
+=======
+    let check = `SELECT * FROM users WHERE username == "${username}";`
+
+    db.all(check, function(err, rows){
+        if(rows.length != 0){
+            res.end("The user is already existing!");
+        }else{
+            // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
+            let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
+
+            db.run(sql,function(err) {
+                
+                if (err) { 
+                    console.error(err);
+                } else {
+                    res.render('home', { 
+                        username: req.session.username,
+                        email: req.session.email
+                    });
+                }
+            });
+        }
+    });
+>>>>>>> backendFeaturesKigari
 });
 
 // Aufruf Login
@@ -132,7 +173,7 @@ app.post('/login', function(req, res){
         req.session.email = row.email;
         
         if(bcrypt.compareSync(password, row.password)){
-            res.render('login_response', { 
+            res.render('home', { 
                 username: req.session.username,
                 email: req.session.email
             });            
@@ -154,7 +195,7 @@ app.post('/change_username', function(req,res){
 
     db.get(sql, function(err, row){
         if(err){
-            res.end('somthing went wrong or user already exists');
+            res.end('Something went wrong or user already exists');
             console.error(err);
         }else{
             req.session.username = new_username
