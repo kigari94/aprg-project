@@ -108,11 +108,11 @@ app.post('/register', function(req, res) {
         // Verschluesselung des Passwortes
         let hash = bcrypt.hashSync(password, 12);
 
-        let check = `SELECT * FROM users WHERE username == "${username}";`
+        let check = `SELECT * FROM users WHERE username == "${username}" OR email == "${email}";`
 
         db.all(check, function(err, rows){
             if(rows.length != 0){
-                res.end("The user is already existing!");
+                res.render('start', {msgRegister: "The username or email is already existing!"});
             }else{
                 // SQL Befehl um einen neuen Eintrag der Tabelle users hinzuzufügen
                 let sql = `INSERT INTO users (username, email, password) VALUES ("${username}", "${email}", "${hash}");`
@@ -130,7 +130,7 @@ app.post('/register', function(req, res) {
             }
         });
     }else{
-        res.end('Password did not match with Re_Password');
+        res.render('start', {msgRegister: "Password's did not match"});
     }
 });
 
@@ -140,21 +140,28 @@ app.post('/login', function(req, res){
     const password = req.body.password;
 
     // Abgleich username und passwort mit der Datenbank
-    let sql = `SELECT * FROM users WHERE username="${username}"`;
-    db.get(sql, function(err, row){
-        if(err){
-            console.error(err);
-        }
-        req.session.username = row.username;
-        req.session.email = row.email;
-        
-        if(bcrypt.compareSync(password, row.password)){
-            res.render('home', { 
-                username: req.session.username,
-                email: req.session.email
-            });            
+    let check = `SELECT * FROM users WHERE username =="${username}"`;
+    db.all(check, function(err, row){
+        if(row.length != 0){
+            if(err){
+                console.error(err);
+            }
+            req.session.username = row.username;
+            req.session.email = row.email;
+            
+            let sql = `SELECT * FROM users WHERE username =="${username}"`;
+            db.get(sql,function(err,row){
+                if(bcrypt.compareSync(password, row.password)){
+                    res.render('home', { 
+                        username: req.session.username,
+                        email: req.session.email
+                    });            
+                }else{
+                    res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
+                }
+            });
         }else{
-            res.end('Wrong username or password. Please try again.');            
+            res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
         }
     });
 });
@@ -255,6 +262,7 @@ app.post('/delete_account', function(req,res){
 
 // ToDo: Funktion zur Speicherung der Bilddateien 
 app.post('/upload', function(req, res) {
+    const username = req.session.username;
     const file = req.body.file;
     const title = req.body.title;
     
@@ -273,4 +281,5 @@ app.post('/upload', function(req, res) {
 });
 
 // ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
+// ToDo: Funktion fuer Logout
 
