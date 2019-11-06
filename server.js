@@ -166,6 +166,13 @@ app.post('/login', function(req, res){
     });
 });
 
+// Aufruf Logout
+app.post('/logout', function(req, res){
+    delete req.session.username;
+    delete req.session.email;
+    res.render('start', {msgLogout: "Successfully logged out."});           
+});
+
 // Post for change_username
 app.post('/change_username', function(req,res){
     const new_username = req.body.new_username;
