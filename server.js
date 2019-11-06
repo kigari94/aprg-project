@@ -2,8 +2,10 @@
 const express = require('express');
 const app =  express();
 const bcrypt = require('bcrypt');
-
+const fileupload = require('express-fileupload');
 const bodyParser = require('body-parser');
+
+app.use(fileupload());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.engine('.ejs', require('ejs').__express);
@@ -146,12 +148,13 @@ app.post('/login', function(req, res){
             if(err){
                 console.error(err);
             }
-            req.session.username = row.username;
-            req.session.email = row.email;
             
             let sql = `SELECT * FROM users WHERE username =="${username}"`;
             db.get(sql,function(err,row){
                 if(bcrypt.compareSync(password, row.password)){
+                    req.session.username = row.username;
+                    req.session.email = row.email;
+                    
                     res.render('home', { 
                         username: req.session.username,
                         email: req.session.email
@@ -167,11 +170,11 @@ app.post('/login', function(req, res){
 });
 
 // Aufruf Logout
-app.post('/logout', function(req, res){
-    delete req.session.username;
-    delete req.session.email;
-    res.render('start', {msgLogout: "Successfully logged out."});           
-});
+// app.post('/logout', function(req, res){
+//     delete req.session.username;
+//     delete req.session.email;
+//     res.render('start', {msgLogout: "Successfully logged out."});           
+// });
 
 // Post for change_username
 app.post('/change_username', function(req,res){
@@ -269,24 +272,27 @@ app.post('/delete_account', function(req,res){
 
 // ToDo: Funktion zur Speicherung der Bilddateien 
 app.post('/upload', function(req, res) {
+    console.log(req.files);
     const username = req.session.username;
-    const file = req.body.file;
-    const title = req.body.title;
+    const file = req.files.file;
+    // const title = req.body.title;
+
+    file.mv(__dirname + '/files/' + file.name)
+    res.send('uploaded: ' + file.name + ' by: ' + username);
     
     // SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
-    let sql = `INSERT INTO files (username, file, title, date) VALUES ("${username}", "${file}", "${title}", date(now));`
-    db.run(sql, function(err) {
-        if (err) { 
-            console.error(err);
-        } else {
-            res.render('home', { 
-                username: req.body.username,
-                title: req.body.title
-            });
-        }
-    });
+    // let sql = `INSERT INTO files (username, file, title, date) VALUES ("${username}", "${file}", "${title}", date(now));`
+    // db.run(sql, function(err) {
+    //     if (err) { 
+    //         console.error(err);
+    //     } else {
+    //         res.render('home', { 
+    //             username: req.body.username,
+    //             title: req.body.title
+    //         });
+    //     }
+    // });
 });
 
 // ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
-// ToDo: Funktion fuer Logout
 
