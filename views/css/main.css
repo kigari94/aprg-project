@@ -72,6 +72,10 @@ h1{
     display:none
   }
 
+  #errorMessage {
+    color: rgb(216, 30, 30);
+  }
+
 /* UPLOAD DESIGN (USES THE LOGIN BOX LAYOUT) */
 .box__button{
     background: #ba3258;

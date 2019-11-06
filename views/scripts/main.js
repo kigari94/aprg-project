@@ -13,4 +13,13 @@ function allowDrop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
   }
+  
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_overlay
+overlayOn = function() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
 */
