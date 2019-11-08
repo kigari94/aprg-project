@@ -226,7 +226,8 @@ app.post('/change_username', function(req,res){
             
             res.render('changeuserdata',{
                 username: new_username,
-                email: req.session.email
+                email: req.session.email,
+                msgChange: 'Succesfully Changed'
             });
         }
     });
@@ -246,7 +247,7 @@ app.post('/change_mailadress', function(req,res){
                 email: req.session.email});
             console.error(err);
         }else{
-            res.render('changeuserdata',{
+            res.render('changeuserdata',{msgChange: 'Email has been changed', 
                 username: req.session.username,
                 email: new_email
             })
@@ -271,15 +272,17 @@ app.post('/change_password', function(req,res){
                 res.end(err);
                 console.error(err);
             }else{
-                /*res.render('changeuserdata',{
+                res.render('changeuserdata',{msgChange: 'Password has been changed', 
                     username: req.session.username,
-                    email: req.session.email
-                })*/
-                res.end('password was changed');
+                    email: new_email
+                });
             }
             });
     }else{
-        res.end('password and password repeat didnt match blub')
+        res.render('changeuserdata',{msgChange: 'Password did not matched re', 
+                    username: req.session.username,
+                    email: new_email
+                });
     }
 });
 
@@ -297,7 +300,7 @@ app.post('/delete_account', function(req,res){
                     console.log(err);
                 }else
                 {
-                    res.end('user has been succesfully destroyed blub u dead');
+                    res.send ('start',{msgRegister:'User was eleted'});
                 }
             });
         }
