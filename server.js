@@ -53,6 +53,29 @@ app.get('/start', function(req, res){
     }
 });
 
+function homeLoader(req,res, displayedMsg){
+    let sql = 'SELECT path FROM images;';
+        db.all(sql, function(err, row){
+            if(err){
+                //res.end(err);
+                console.error(err);
+            }else{
+                if(row.length == 0)
+                {
+                    console.log('no entrys')
+                    res.render('home', { authSuccessMessage: displayedMsg,
+                        username: req.session.username,
+                        email: req.session.email});
+                }
+                else{
+                    res.render('home', {authSuccessMessage: displayedMsg, paths: row.path, title: row.title,
+                    username: req.session.username,
+                    email: req.session.email});
+                }
+            }
+        });
+}
+
 // Ausgabe der Account-Page
 app.get('/account', function(req, res){
     if (!req.session.username){
@@ -340,7 +363,7 @@ app.post('/upload', function(req, res) {
                 sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
-                        console.log(err);
+                        return res.render('upload', {msgUpload: 'Somthing went wrong' });
                     } else {
                         file.mv(path);
                         return res.render('home',{msg : 'UploadSucced'});
