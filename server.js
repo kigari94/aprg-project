@@ -6,6 +6,8 @@ const fileupload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
 app.use(fileupload());
+
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.engine('.ejs', require('ejs').__express);
@@ -65,7 +67,22 @@ app.get('/home', function(req, res){
     if (!req.session.username){
         res.render('start', {authDeniedMessage: "Not logged in yet!"});
     }else{
-        res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+        let sql = 'SELECT path FROM images;';
+        db.all(sql, function(err, row){
+            if(err){
+                //res.end(err);
+                console.error(err);
+            }else{
+                if(row.length == 0)
+                {
+                    console.log('no paths in the db')
+                }
+                else{
+                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, path: row.path});
+                }
+            }
+        });
+        //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
 
@@ -170,6 +187,12 @@ app.post('/login', function(req, res){
             res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
         }
     });
+});
+
+//Für den logoutbutton
+app.post('/logout',function(req,res){
+    res.session.destroy;
+    res.send('start');
 });
 
 // Aufruf Logout
@@ -277,25 +300,44 @@ app.post('/delete_account', function(req,res){
 app.post('/upload', function(req, res) {
     console.log(req.files);
     const username = req.session.username;
+    const title = req.body.title;
     const file = req.files.file;
-    // const title = req.body.title;
 
-    file.mv(__dirname + '/files/' + file.name)
-    res.send('uploaded: ' + file.name + ' by: ' + username);
-    
-    // SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
-    // let sql = `INSERT INTO files (username, file, title, date) VALUES ("${username}", "${file}", "${title}", date(now));`
-    // db.run(sql, function(err) {
-    //     if (err) { 
-    //         console.error(err);
-    //     } else {
-    //         res.render('home', { 
-    //             username: req.body.username,
-    //             title: req.body.title
-    //         });
-    //     }
-    // });
+    const path = __dirname + '/files/' + file.name
+    console.log(file.size);
+
+    if(file.size < 1024 * 1024 * 50){
+        //file.mv(__dirname + '/files/' + file.name)
+        //res.send('uploaded: ' + file.name + ' by: ' + username);
+        //SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
+        //Handling for if datbase is empty
+
+        let sql = `SELECT * FROM images`
+        db.all(sql,function(err,row){
+            if (err){ 
+                console.log(`Somthing went wrong`);
+            }
+            else{
+                for(object of row)
+                {
+                    console.log(object.path);
+                }
+            }
+        })
+
+        sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
+        db.run(sql, function(err) {
+            if (err) { 
+                console.log(err);
+            } else {
+                file.mv(__dirname + '/files/' + file.name);
+                return res.render('home');
+            }
+        });
+    }else{
+        //file was to big
+        return res.render('upload', {msgUpload: 'file was to big!' });
+    }
 });
 
 // ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
-
