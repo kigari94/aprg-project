@@ -60,7 +60,7 @@ app.get('/account', function(req, res){
     }
 });
 
-// Ausgabe der Home-Page
+// Ausgabe der Home-Page 
 app.get('/home', function(req, res){
     if (!req.session.username){
         res.render('start', {authDeniedMessage: "Not logged in yet!"});

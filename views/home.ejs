@@ -3,9 +3,77 @@
     <head>
         <title>Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/> 
     </head>
+
     <body>
-        <!-- Here goes the content -->
+        <!--HEADER-->
+        <script>
+                var Clicks = 0;
+                function AddClick(){
+                    Clicks = Clicks +1;
+                    document.getElementById('CountedClicks').innerHTML = Clicks + ' LIKES';
+                }
+        </script>
+        <div class="header">
+            <h1><strong>Blobfish!</strong> Your daily dose funny pictures~</h1>
+            <!-- <div class="wrap_likebox">
+                <button class="wrap_likebutton"  onclick="AddClick()">LIKE THIS SITE!!</button>
+                <span id="CountedClicks" class="wrap_likecounter">0 LIKES</span><br>
+            </div> -->
+        </div>
+
+        <!--TOP NAVIGATION-->
+        <div class="topnav">
+            <a href="#">LINK1</a>
+            <a href="#">LINK2</a>
+            <a href="#">LINK3</a>
+        </div>
+        <!--SIDE SLIDE NAVIGATION-->
+        <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)"  class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="bottom_box">
+                    <a href="/start"><strong>LOGOUT</strong></a>
+                    <a href="/changeuserdata">User</a>
+                    <a href="/upload">Upload your shit</a>
+                    <a href="/cookies_datasecurity">Datasecurity</a>
+                    <a href="/who_we_are">Company Information</a>
+                </div>
+            </div>
+            <span style="font-size:30px;cursor:pointer;position:sticky;top:52px;color:#ba3258" onclick="openNav()">&#9776</span>
+            <script>
+            function openNav(){
+                document.getElementById("mySidenav").style.width = "170px";
+            }
+            function closeNav(){
+                document.getElementById("mySidenav").style.width = "0";
+            }
+            </script>
+            <script>
+            </script>
+        <div id="wrap">
+                <div id="left_col">
+                    <div id="left_col_box">
+                    <% for (let i = 700; i < 750; i++){ %>
+                        <p><%=i%></p>
+                        <img src="https://picsum.photos/id/<%=i%>/552/354">
+                    <%}%>
+                    </div>
+                </div>
+    
+                <div id="right_col">
+    
+                     <div id="right_col_box">
+                        <h1>THE BEST</h1>
+                        <% for (let i = 800; i < 810; i++){ %>
+                            <img src="https://picsum.photos/id/<%=i%>/552/354">
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        <div class="footer">
+                <p>© 2019 All Rights Reserved</p>
+            </div>
+        </div>
     </body>
 </html>

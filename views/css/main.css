@@ -1,10 +1,24 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family:'Courier New', Courier, monospace;
     background: #212121
 }
-
+/*HELPFULL*/
+/*BACKBUTTON*/
+.backbutton_design{
+  background: #212121;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #ba3258;
+  border-radius: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.backbutton_design:hover{
+  background-color: #ba3258;
+  color: #000000;
+  border: 2px solid #f1f1f1;
+}
 /* DESIGN LOGIN / REGISTER */
 .box {
     width: 300px;
@@ -37,6 +51,7 @@ h1{
     border: 2px solid #212121;
     outline: none;
     border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
   }
   .box input[type = "text"],.box input[type  = "email"],.box input[type = "password"]{
     border: 0;
@@ -51,6 +66,7 @@ h1{
     color: white;
     border-radius: 24px;
     transition: 0.25;
+    font-family: 'Courier New', Courier, monospace;
 }
     .box input[type = "text"]:focus,.box input[type  = "email"]:focus,.box input[type = "password"]:focus{
         width: 280px;
@@ -78,12 +94,19 @@ h1{
 
 /* UPLOAD DESIGN (USES THE LOGIN BOX LAYOUT) */
 .box__button{
-    background: #ba3258;
+    background: #212121;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border: 2px solid #212121;
     outline: none;
+    border: 2px solid #ba3258;
     border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.box__button:hover{
+  background-color: #ba3258;
+  color: #000000;
+  border: 2px solid #f1f1f1;
 }
 .inputfile{
     width: 0.1px;
@@ -116,3 +139,186 @@ h1{
 .box__error {
   display: none;
 }
+
+/* HOME SITE STYLE */
+/*header top*/
+.header{
+  background-color: #393939;
+  text-align: center;
+  padding: 10px;
+}
+.header h1{
+  color: #ba3258;
+  text-shadow:  1px 1px 1px #751e37,
+                1px -1px 1px #751e37,
+                -1px 1px 1px #751e37,
+                -1px -1px 1px #751e37;
+}
+/*nav container*/
+.topnav{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: #333333;
+
+}
+/*nav links*/
+.topnav a{
+  float: left;
+  display:block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  margin-left: 10px;
+  text-decoration: none;
+  border: 2px solid #ba3258;
+  border-radius: 5px;
+}
+
+.topnav a:hover{
+  background-color: #ba3258;
+  color: black;
+}
+
+/* side menu */
+.sidenav{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111111;
+  overflow-x: hidden;
+  transition: 0.5;
+
+}
+.bottom_box{
+  position: absolute;
+  bottom:8px;
+  left:3px;
+}
+.sidenav a{
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover{
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn{
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px){
+  .sidenav {padding-top: 15px;}
+  .sidenav a{font-size: 16px;}
+}
+
+
+/* Main Content 3variable column */
+#wrap{
+  width: 90%;
+  margin:0 auto;
+}
+#left_col{
+  float:left;
+  width: 85%;
+  background-color: #333333;
+  overflow: auto;
+  color:black;
+}
+#left_col_box{
+  margin: auto;
+  width: 85%;
+}
+#left_col_box img{
+  width: 100%;
+  height: auto;
+}
+#right_col{
+  float: right;
+  width: 15%;
+  background-color: #444444;
+  text-align: center;
+}
+#right_col_box{
+  margin:auto;
+  width: 80%
+}
+#right_col_box img{
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 700px){
+  #right_col{float:none;}
+  #left_col{width: 100%;}
+}
+/*Like button*/
+.wrap_likebox{
+  width:90%;
+  height: 30px;
+}
+.wrap_likebutton{
+  float: left;
+  background-color: #393939;
+  font-size: 20px;
+  color: white;
+  border: 2px solid #ba3258;
+  border-radius: 2px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.wrap_likecounter{
+  float:right;
+  background-color: #393939;
+  font-size: 20px;
+  color: white;
+  border: 2px solid #ba3258;
+  border-radius: 2px;
+}
+.wrap_likebutton:hover{
+  background-color: #ba3258;
+  color: #000000;
+}
+/*footer style*/
+.footer {
+  clear: both;
+  height: 10px;
+  margin-top: -20px;
+  background-color: #212121;
+}
+.footer p{
+  text-align: right;
+  padding: 10px;
+  color: #f2f2f2;
+}
+/*
+.column{
+  float: left;
+  padding: 10px;
+}
+.column.side{
+  width: 15%;
+}
+.colum.middle{
+  width: 70%;
+}
+
+.row:after{
+  content: "";
+  display: table;
+  clear: both
+}
+
+*/
+
