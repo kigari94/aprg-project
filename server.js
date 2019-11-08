@@ -85,7 +85,6 @@ app.get('/home', function(req, res){
             }
         });
         //Arrayübergabe paths foot
-
         //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
@@ -217,7 +216,7 @@ app.post('/change_username', function(req,res){
     db.get(sql, function(err, row){
         if(err){
             //res.end('Something went wrong or user already exists');
-            res.render('changeuserdata',{msgChange: 'user has been taken',
+            res.render('changeuserdata',{msgChange: 'User has been already taken',
                 username: req.session.username, 
                 email: req.session.email
             });
