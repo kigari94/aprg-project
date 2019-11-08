@@ -91,22 +91,7 @@ app.get('/home', function(req, res){
         res.render('start', {authDeniedMessage: "Not logged in yet!"});
     }else{
         //Arrayübergabe paths head
-        let sql = 'SELECT path FROM images;';
-        db.all(sql, function(err, row){
-            if(err){
-                //res.end(err);
-                console.error(err);
-            }else{
-                if(row.length == 0)
-                {
-                    console.log('no entrys')
-                    res.end('no entrys');
-                }
-                else{
-                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row.path});
-                }
-            }
-        });
+        homeLoader(req,res, `Logged in as: ${req.session.username}`)
         //Arrayübergabe paths foot
         //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
