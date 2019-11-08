@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 app.use(fileupload());
 
-
+app.use(express.static('files'))
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.engine('.ejs', require('ejs').__express);
@@ -52,6 +52,7 @@ app.get('/start', function(req, res){
         res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
+
 
 function homeLoader(req,res, displayedMsg){
     let sql = 'SELECT path FROM images;';
