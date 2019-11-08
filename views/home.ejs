@@ -52,10 +52,9 @@
         <div id="wrap">
                 <div id="left_col">
                     <div id="left_col_box">
-                    <% for (let i = 700; i < 750; i++){ %>
-                        <p><%=i%></p>
-                        <img src="https://picsum.photos/id/<%=i%>/552/354">
-                    <%}%>
+                        <% for (let i = 0; i < paths.length; i++){ %>
+                            <img src="<%=paths[i].path%>">
+                        <%}%>
                     </div>
                 </div>
     

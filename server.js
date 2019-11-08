@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 app.use(fileupload());
 
-
+app.use(express.static('files'))
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.engine('.ejs', require('ejs').__express);
@@ -52,6 +52,7 @@ app.get('/start', function(req, res){
         res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
+
 
 function homeLoader(req,res, displayedMsg){
     let sql = 'SELECT path FROM images;';
@@ -103,7 +104,7 @@ app.get('/home', function(req, res){
                     res.end('no entrys');
                 }
                 else{
-                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row.path});
+                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row});
                 }
             }
         });
@@ -369,16 +370,20 @@ app.post('/upload', function(req, res) {
             if (err){ 
                 console.log(`Somthing went wrong`);
             }else{
+
+                let dbpath;
                 //zulässige Datentypen
                 if(file.mimetype == "image/jpeg"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
+                    dbpath = row.length.toString(10) + ".jpg";
                 }else if(file.mimetype = "image/png"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".png";
+                    dbpath = row.length.toString(10) + ".png";
                 }else{
                     return res.end('unzulässiger Datentyp');
                 }
 
-                sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
+                sql = `INSERT INTO images (path, title, username, date) VALUES ("${dbpath}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
                         return res.render('upload', {msgUpload: 'Somthing went wrong' });
