@@ -10,14 +10,14 @@ body{
   background: #212121;
   color: white;
   padding: 10px 20px;
-  border: 2px solid #ba3258;
+  border: 2px solid #04567c;
   border-radius: 15px;
   font-family: 'Courier New', Courier, monospace;
 }
 .backbutton_design:hover{
-  background-color: #ba3258;
+  background-color: #0678ad;
   color: #000000;
-  border: 2px solid #f1f1f1;
+  border: 2px solid #0678ad;
 }
 /* DESIGN LOGIN / REGISTER */
 .box {
@@ -30,14 +30,14 @@ body{
     background: #000000;
     text-align: center;
     border-radius: 5px;
-    border: 2px solid #ba3258;
+    border: 2px solid #04567c;
   }
 #title{
     margin: 0;
     padding: 0;
     font-size: 50px;
     text-align: center;
-    color: #ba3258;
+    color: #04567c;
 }
 h1{
     color: white;
@@ -45,7 +45,7 @@ h1{
     font-weight: 500;
 }
   .box input[type = "submit"]{
-    background: #ba3258;
+    background: #04567c;
     color: white;
     padding: 10px 20px;
     border: 2px solid #212121;
@@ -53,17 +53,26 @@ h1{
     border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
   }
+
+  .box input[type = "submit"]:hover{
+    background-color: #0678ad ;
+    color: white ;
+  }
+  .box input {
+    cursor:pointer;
+    color: white;
+  }
   .box input[type = "text"],.box input[type  = "email"],.box input[type = "password"]{
     border: 0;
-    background: #212121;
+    background: black;
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #ba3258;
+    border: 2px solid #0678ad;
     padding: 14px 10px;
     width: 200px;
     outline: none;
-    color: white;
+    color: rgb(235, 244, 250);
     border-radius: 24px;
     transition: 0.25;
     font-family: 'Courier New', Courier, monospace;
@@ -74,6 +83,7 @@ h1{
   .box label {
     cursor:pointer;
     color: white;
+    float: center;
   }
   #form-switch {
     display:none
@@ -87,7 +97,7 @@ h1{
   #form-switch:checked~#login-form {
     display:none
   }
-
+/*ACHTUNG!!! FARBCODE NICHT ÄNDERN!!!*/
   #errorMessage {
     color: rgb(216, 30, 30);
   }
@@ -95,18 +105,18 @@ h1{
 /* UPLOAD DESIGN (USES THE LOGIN BOX LAYOUT) */
 .box__button{
     background: #212121;
-    color: white;
+    color: #04567c;
     padding: 8px 20px;
     border: 2px solid #212121;
     outline: none;
-    border: 2px solid #ba3258;
+    border: 2px solid #04567c;
     border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
 }
 .box__button:hover{
-  background-color: #ba3258;
+  background-color: #0678ad;
   color: #000000;
-  border: 2px solid #f1f1f1;
+  border: 2px solid #0678ad;
 }
 .inputfile{
     width: 0.1px;
@@ -122,7 +132,7 @@ h1{
     font-size: 1.25em;
     font-weight: 700;
     color: white;
-    border: 2px solid #ba3258;
+    border: 2px solid #0678ad;
     background-color:#212121;
     border-radius: 5px;
     display: inline-block;
@@ -130,7 +140,7 @@ h1{
 }
 .inputfile:focus + label,
 .inputfile + label:hover{
-    background-color: #ba3258;
+    background-color: #0678ad;
 }
 
 .box__dragndrop,
@@ -143,16 +153,18 @@ h1{
 /* HOME SITE STYLE */
 /*header top*/
 .header{
-  background-color: #393939;
+  background-color: #1b1d1e;
   text-align: center;
   padding: 10px;
 }
 .header h1{
-  color: #ba3258;
-  text-shadow:  1px 1px 1px #751e37,
-                1px -1px 1px #751e37,
-                -1px 1px 1px #751e37,
-                -1px -1px 1px #751e37;
+  color: #04567c;
+  /*
+  text-shadow:  1px 1px 1px #04567c,
+                1px -1px 1px #04567c,
+                -1px 1px 1px #04567c,
+                -1px -1px 1px #04567c; 
+                */
 }
 /*nav container*/
 .topnav{
@@ -160,7 +172,7 @@ h1{
   position: sticky;
   top: 0;
   overflow: hidden;
-  background-color: #333333;
+  background-color: #1b1d1e;
 
 }
 /*nav links*/
@@ -172,12 +184,12 @@ h1{
   padding: 14px 16px;
   margin-left: 10px;
   text-decoration: none;
-  border: 2px solid #ba3258;
+  border: 2px solid #0678ad;
   border-radius: 5px;
 }
 
 .topnav a:hover{
-  background-color: #ba3258;
+  background-color: #0678ad;
   color: black;
 }
 
@@ -203,13 +215,13 @@ h1{
   padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 20px;
-  color: #818181;
+  color: #04567c;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover{
-  color: #f1f1f1;
+  color: #0678ad;
 }
 
 .sidenav .closebtn{
@@ -249,7 +261,7 @@ h1{
 #right_col{
   float: right;
   width: 15%;
-  background-color: #444444;
+  background-color: #333333;
   text-align: center;
 }
 #right_col_box{
@@ -274,7 +286,7 @@ h1{
   background-color: #393939;
   font-size: 20px;
   color: white;
-  border: 2px solid #ba3258;
+  border: 2px solid #04567c;
   border-radius: 2px;
   font-family: 'Courier New', Courier, monospace;
 }
@@ -283,11 +295,11 @@ h1{
   background-color: #393939;
   font-size: 20px;
   color: white;
-  border: 2px solid #ba3258;
+  border: 2px solid #04567c;
   border-radius: 2px;
 }
 .wrap_likebutton:hover{
-  background-color: #ba3258;
+  background-color: #0678ad;
   color: #000000;
 }
 /*footer style*/
@@ -295,7 +307,7 @@ h1{
   clear: both;
   height: 10px;
   margin-top: -20px;
-  background-color: #212121;
+  background-color: #1b1d1e;
 }
 .footer p{
   text-align: right;
@@ -321,4 +333,41 @@ h1{
 }
 
 */
+
+
+
+/*ERROR ejs*/
+ .error {
+   margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    background: #212121
+ }
+
+ .error a:link{
+   color: #04567c;
+ }
+
+ .error a:visited{
+  color: #04567c;
+}
+
+ .error a:hover {
+  color: #0678ad ;
+ }
+
+ /*COOKIES AND DATASECURITY. */
+ .cookies {
+  margin: 0;
+   padding: 0;
+   text-align: right;
+   font-size: 20px;
+   font-family:'Courier New', Courier, monospace;
+   color: white;
+   background: #212121
+  }
+
 

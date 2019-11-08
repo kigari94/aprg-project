@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
         <title><%= title %></title>
     </head>
     <body>
+        <div class="error">
         <h1><%= title %></h1>
-        <p> Well, that didn´t work... we´re sorry for your loss! 
-            Error: <%= error %>
-        </p><br>
-        <a href="/start">Try again.</a> Back to random!
+        <p> Error: <%= error %>
+            We´re sorry for your loss!  
+        </p>
+    </div>
+    <div class="error">
+        <a href="/start">Try again.</a>
+    </div>
     </body>
 </html>
