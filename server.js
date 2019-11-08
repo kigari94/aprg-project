@@ -94,8 +94,8 @@ app.get('/changeuserdata', function(req,res){
 // 404 Error handling
 app.get('*', function(req, res){
     res.render('error', {
-        title: '404 Seite nicht gefunden',
-        error: 'Die Seite konnte leider nicht gefunden werden. Überprüfe bitte, ob die Adresse stimmt.'
+        title: 'Error 404 Website not found',
+        error: "Well, that didn't work...It seems like we can't find the website you requested."
     });
 });
 
