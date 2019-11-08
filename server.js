@@ -53,7 +53,7 @@ app.get('/start', function(req, res){
     }
 });
 
-function homeLoader(req, res, displayedMsg){
+function homeLoader(req,res, displayedMsg){
     let sql = 'SELECT path FROM images;';
         db.all(sql, function(err, row){
             if(err){
@@ -68,7 +68,7 @@ function homeLoader(req, res, displayedMsg){
                         email: req.session.email});
                 }
                 else{
-                    res.render('home', {    authSuccessMessage: displayedMsg, paths: row.path, title: row.title,
+                    res.render('home', {authSuccessMessage: displayedMsg, paths: row.path, title: row.title,
                     username: req.session.username,
                     email: req.session.email});
                 }
