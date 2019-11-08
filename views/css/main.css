@@ -19,7 +19,7 @@ body{
   color: #000000;
   border: 2px solid #f1f1f1;
 }
-/* DESIGN LOGIN / REGISTER */
+/* DESIGN LOGIN / REGISTER / CHANGE USER*/
 .box {
     width: 300px;
     padding: 40px;
@@ -31,7 +31,16 @@ body{
     text-align: center;
     border-radius: 5px;
     border: 2px solid #ba3258;
+    overflow: auto;
   }
+.box p{
+  color:white;
+  font-size: 20px;
+}
+.box p2{
+  color:#ba3258;
+  font-size: 20px;
+}
 #title{
     margin: 0;
     padding: 0;
@@ -64,6 +73,7 @@ h1{
     width: 200px;
     outline: none;
     color: white;
+    font-size: 20px;
     border-radius: 24px;
     transition: 0.25;
     font-family: 'Courier New', Courier, monospace;
@@ -74,11 +84,44 @@ h1{
   .box label {
     cursor:pointer;
     color: white;
+    border: 2px solid #ba3258;
+    padding: 2px 20px;
+    border-radius: 5px;
+    
+  }
+  .box label:hover{
+    color: #000000;
+    background-color: #ba3258;
   }
   #form-switch {
-    display:none
+    display:none;
   }
   #register-form {
+    display:none;
+  }
+/*Switch states*/
+  #changeuser-switch{
+    display:none;
+  }
+  #changepw-switch{
+    display:none;
+  }
+  #changeemail-switch{
+    display:none;
+  }
+  #deleteacc-switch{
+    display:none;
+  }
+  #changeuser-form{
+    display:none;
+  }
+  #changepw-form{
+    display:none;
+  }
+  #changeemail-form{
+    display:none;
+  }
+  #deleteacc-form{
     display:none;
   }
   #form-switch:checked~#register-form {
@@ -87,9 +130,30 @@ h1{
   #form-switch:checked~#login-form {
     display:none
   }
-
-  #errorMessage {
-    color: rgb(216, 30, 30);
+/*change switch state*/
+  #changeuser-switch:checked~#changeuser-form {
+    display:block
+  }
+  #changeuser-switch:checked~#main-form {
+    display:none
+  }
+  #changepw-switch:checked~#changepw-form {
+    display:block
+  }
+  #changepw-switch:checked~#main-form {
+    display:none
+  }
+  #changeemail-switch:checked~#changeemail-form {
+    display:block
+  }
+  #changemail-switch:checked~#main-form {
+    display:none
+  }
+  #deleteacc-switch:checked~#deleteacc-form {
+    display:block
+  }
+  #deleteacc-switch:checked~#main-form {
+    display:none
   }
 
 /* UPLOAD DESIGN (USES THE LOGIN BOX LAYOUT) */
@@ -261,7 +325,7 @@ h1{
   height: auto;
 }
 @media screen and (max-width: 700px){
-  #right_col{float:none;}
+  #right_col{float:none;;visibility: hidden;}
   #left_col{width: 100%;}
 }
 /*Like button*/
