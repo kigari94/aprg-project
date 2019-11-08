@@ -104,7 +104,7 @@ app.get('/home', function(req, res){
                     res.end('no entrys');
                 }
                 else{
-                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row.path});
+                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row});
                 }
             }
         });
@@ -357,10 +357,10 @@ app.post('/upload', function(req, res) {
                 //zulässige Datentypen
                 if(file.mimetype == "image/jpeg"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
-                    dbpath = '/files/' + row.length.toString(10) + ".jpg";
+                    dbpath = row.length.toString(10) + ".jpg";
                 }else if(file.mimetype = "image/png"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".png";
-                    dbpath = '/files/' + row.length.toString(10) + ".png";
+                    dbpath = row.length.toString(10) + ".png";
                 }else{
                     return res.end('unzulässiger Datentyp');
                 }
