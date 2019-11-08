@@ -216,7 +216,11 @@ app.post('/change_username', function(req,res){
 
     db.get(sql, function(err, row){
         if(err){
-            res.end('Something went wrong or user already exists');
+            //res.end('Something went wrong or user already exists');
+            res.render('changeuserdata',{msgChange: 'user has been taken',
+                username: req.session.username, 
+                email: req.session.email
+            });
             console.error(err);
         }else{
             req.session.username = new_username
@@ -224,7 +228,7 @@ app.post('/change_username', function(req,res){
             res.render('changeuserdata',{
                 username: new_username,
                 email: req.session.email
-            })
+            });
         }
     });
 });
@@ -236,10 +240,11 @@ app.post('/change_mailadress', function(req,res){
     let sql = `UPDATE users
     SET email = "${new_email}"
     WHERE username = "${req.session.username}";`
-
     db.get(sql, function(err, row){
         if(err){
-            res.end(err);
+            res.render('changeuserdata',{msgChange: 'email has been already taken',
+                username: req.session.username, 
+                email: req.session.email});
             console.error(err);
         }else{
             res.render('changeuserdata',{
