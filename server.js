@@ -123,6 +123,9 @@ app.post('/register', function(req, res) {
                     if (err) { 
                         console.error(err);
                     } else {
+                        req.session.username = username;
+                        req.session.email = email;
+
                         res.render('home', { 
                             username: req.session.username,
                             email: req.session.email
