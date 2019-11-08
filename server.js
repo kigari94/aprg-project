@@ -351,16 +351,20 @@ app.post('/upload', function(req, res) {
             if (err){ 
                 console.log(`Somthing went wrong`);
             }else{
+
+                let dbpath;
                 //zulässige Datentypen
                 if(file.mimetype == "image/jpeg"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
+                    dbpath = '/files/' + row.length.toString(10) + ".jpg";
                 }else if(file.mimetype = "image/png"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".png";
+                    dbpath = '/files/' + row.length.toString(10) + ".png";
                 }else{
                     return res.end('unzulässiger Datentyp');
                 }
 
-                sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
+                sql = `INSERT INTO images (path, title, username, date) VALUES ("${dbpath}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
                         return res.render('upload', {msgUpload: 'Somthing went wrong' });
