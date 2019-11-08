@@ -340,7 +340,7 @@ app.post('/upload', function(req, res) {
                 sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
-                        console.log(err);
+                        return res.render('upload', {msgUpload: 'Somthing went wrong' });
                     } else {
                         file.mv(path);
                         return res.render('home',{msg : 'UploadSucced'});
