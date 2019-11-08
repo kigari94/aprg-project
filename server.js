@@ -135,6 +135,24 @@ app.get('/changeuserdata', function(req,res){
     }
 });
 
+// Ausgabe der cookies_datasecurity-Page
+app.get('/cookies_datasecurity', function(req, res){
+    if (!req.session.username){
+        res.render('start', {authDeniedMessage: "Not logged in yet!"});
+    }else{
+        res.render('cookies_datasecurity', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
+});
+
+// Ausgabe der who_we_are-Page
+app.get('/who_we_are', function(req, res){
+    if (!req.session.username){
+        res.render('start', {authDeniedMessage: "Not logged in yet!"});
+    }else{
+        res.render('who_we_are', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+    }
+});
+
 // 404 Error handling
 app.get('*', function(req, res){
     res.render('error', {
