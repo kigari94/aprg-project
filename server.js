@@ -156,7 +156,7 @@ app.get('/who_we_are', function(req, res){
 app.get('*', function(req, res){
     res.render('error', {
         title: 'Error 404 Website not found',
-        error: "Well, that didn't work...It seems like we can't find the website you requested."
+        error: "Well, that didn't work... It seems like we can't find the website you requested."
     });
 });
 

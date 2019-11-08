@@ -440,7 +440,7 @@ h1{
   margin: 0;
    padding: 0;
    text-align: left;
-   font-size: 20px;
+   font-size: 18px;
    font-family:'Courier New', Courier, monospace;
    color: white;
    background: #212121
@@ -455,4 +455,22 @@ h1{
   color: #0678ad
 }
 
-
+/*BLOBFISH FAMILY AND WHO WE ARE/COMPANY INFORMATION */
+.blobfishfamily {
+  margin: 0;
+   padding: 0;
+   text-align: left;
+   font-size: 18px;
+   font-family:'Courier New', Courier, monospace;
+   color: white;
+   background: #212121
+  }
+  .blobfishfamily a:link {
+    color: #04567c
+  }
+  .blobfishfamily a:visited {
+    color: #04567c
+  }
+  .blobfishfamily a:hover {
+    color: #0678ad
+  }
