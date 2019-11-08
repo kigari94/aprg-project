@@ -67,6 +67,7 @@ app.get('/home', function(req, res){
     if (!req.session.username){
         res.render('start', {authDeniedMessage: "Not logged in yet!"});
     }else{
+        //Arrayübergabe paths head
         let sql = 'SELECT path FROM images;';
         db.all(sql, function(err, row){
             if(err){
@@ -75,13 +76,16 @@ app.get('/home', function(req, res){
             }else{
                 if(row.length == 0)
                 {
-                    console.log('no paths in the db')
+                    console.log('no entrys')
+                    res.end('no entrys');
                 }
                 else{
-                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, path: row.path});
+                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row.path});
                 }
             }
         });
+        //Arrayübergabe paths foot
+
         //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
@@ -302,8 +306,9 @@ app.post('/upload', function(req, res) {
     const username = req.session.username;
     const title = req.body.title;
     const file = req.files.file;
+    let path = __dirname + '/files/' + file.name;
 
-    const path = __dirname + '/files/' + file.name
+
     console.log(file.size);
 
     if(file.size < 1024 * 1024 * 50){
@@ -311,27 +316,29 @@ app.post('/upload', function(req, res) {
         //res.send('uploaded: ' + file.name + ' by: ' + username);
         //SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
         //Handling for if datbase is empty
-
-        let sql = `SELECT * FROM images`
-        db.all(sql,function(err,row){
+        let sql = `SELECT * FROM images;`;
+        db.all(sql, function(err, row){
             if (err){ 
                 console.log(`Somthing went wrong`);
-            }
-            else{
-                for(object of row)
-                {
-                    console.log(object.path);
+            }else{
+                //zulässige Datentypen
+                if(file.mimetype == "image/jpeg"){
+                    path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
+                }else if(file.mimetype = "image/png"){
+                    path = __dirname + '/files/' + row.length.toString(10) + ".png";
+                }else{
+                    return res.end('unzulässiger Datentyp');
                 }
-            }
-        })
 
-        sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
-        db.run(sql, function(err) {
-            if (err) { 
-                console.log(err);
-            } else {
-                file.mv(__dirname + '/files/' + file.name);
-                return res.render('home');
+                sql = `INSERT INTO images (path, title, username, date) VALUES ("${path}", "${title}", "${username}", date('now'));`
+                db.run(sql, function(err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        file.mv(path);
+                        return res.render('home',{msg : 'UploadSucced'});
+                    }
+                });
             }
         });
     }else{
