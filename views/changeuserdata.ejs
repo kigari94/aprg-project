@@ -6,43 +6,73 @@
         <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
     </head>
     <body>
-        <p>Hello, my dear blob!<br>
-
-            <form action="/change_username" method="POST"> 
-            You signed in as: <br>
-            <%= username %><br>
-            You want to change your username?<br>
-            <!-- Please insert here your old username first:  <input type="text" name="username" placeholder="Old Username" required><br> -->
-            Insert your new username here:<br>
-            <input type="text" name="new_username" placeholder="New Username" required><br>
-            <input type="submit" value="Mama, I want to be called differently!"> <br>
+            <form action="/home">
+                <button class="backbutton_design" type="submit"><strong>BACK TO HOME</strong></button>
             </form>
-
-            <form action="/change_mailadress" method="POST"> 
-            Your mailadress:<br>
-            <%= email %><br>
-            New mailadress? Change it here:<br>
-            <input type="email" name="new_email" placeholder="New E-Mail" required><input type="submit" value="Send me a mail!"><br>
-            <!-- We sent you a mail to verify your new mailadress.-->
+            <input type='checkbox' id='changeuser-switch'>
+            <input type='checkbox' id='changepw-switch'>
+            <input type='checkbox' id='changeemail-switch'>
+            <input type='checkbox' id='deleteacc-switch'>
+            <!--Mainsite-->
+            <form class="box" id='main-form' method='POST'>
+                <h1 id="title">Userstuff</h1>
+                <p></p>
+                <label for='changeuser-switch'><span>User change</span></label>
+                <p></p>
+                <label for='changepw-switch'><span>Password change</span></label>
+                <p></p>
+                <label for='changeemail-switch'><span>Email change</span></label>
+                <p></p>
+                <label for='deleteacc-switch'><span>Delete account</span></label>
             </form>
-
-            <form action="/change_password" method="POST"> 
-            You want to change your password?
-            Enter your new password here:
-            <input type="password" name="new_password" placeholder="New Password" required>
-            Repeat:  <input type="password" name="new_password_repeat" placeholder="New Password Repeat" required> <br>
-            <input type="submit" value="Let´se go!">
+            <!--Change user-->
+            <form class="box" id='changeuser-form' action="/change_username" method='POST'>
+                <h1 id="title">Userstuff</h1>
+                <p>Username:<%=username%></p>
+                <p><strong>Change username</strong><p>
+                <input type="text" name="new_username" placeholder="New Username" required>
+                <input type="submit" value="Change">
+              <label for='changeuser-switch'><span>Back</span></label>
+              <% if (typeof msgChange != "undefined") { %>
+                <div>
+                    <p id="errorMessage"> <%= msgChange %></p>
+                </div>
+              <% } %>
             </form>
-
-            <form action="/delete_account" method="POST"> 
-            You want to delete your account?<br>
-            That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family. <br>
-              <!-- Please insert here first your username:  <input type="text" name="username" placeholder="Username" required><br> 
-                And your password: <input type="password" name"password" placeholder="Password" required> <br>-->
-            <input type="submit" value="Let me go"> <br>
+            <!--Change password-->
+            <form class="box" id='changepw-form' action="/change_password" method='POST'>
+                <h1 id="title">Userstuff</h1>
+                <p><strong>Change password</strong></p>
+                <input type="password" name="new_password" placeholder="New Password" required>
+                <input type="password" name="new_password_repeat" placeholder="RE Password" required>
+                <input type="submit" value="Change">
+              <label for='changepw-switch'>Back</label>
+              <% if (typeof msgChange != "undefined") { %>
+                <div>
+                    <p id="errorMessage"> <%= msgChange %></p>
+                </div>
+              <% } %>
             </form>
-
-            <a href="/home">Yay, back to random!</a>
-        </p>
+            <!--Change email-->
+            <form class="box" id='changeemail-form' action="/change_mailadress" method='POST'>
+                <h1 id="title">Userstuff</h1>
+                <p2><%=email%></p2>
+                <p><strong>Change email</strong></p>
+                <input type="email" name="new_email" placeholder="New E-Mail" required>
+                <input type="submit" value="Send me a mail!">
+              <label for='changeemail-switch'>Back</label>
+              <% if (typeof msgChange != "undefined") { %>
+                <div>
+                    <p id="errorMessage"> <%= msgChange %></p>
+                </div>
+              <% } %>
+            </form>
+            <!--Delete Account-->
+            <form class="box" id='deleteacc-form' action="/delete_account" method='POST'>
+                <h1 id="title">Userstuff</h1>
+                <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
+              <input type="submit" value="DELETE">
+              <label for='deleteacc-switch'>Back</label>
+            </form>
     </body>
 </html>
