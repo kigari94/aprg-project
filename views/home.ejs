@@ -34,7 +34,9 @@
         <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)"  class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="bottom_box">
-                    <a href="/start"><strong>LOGOUT</strong></a>
+                    <form action='/logout' method='POST'>
+                        <input type="submit" value="LOGOUT">
+                    </form>
                     <a href="/changeuserdata">User</a>
                     <a href="/upload">Upload your shit</a>
                     <a href="/cookies_datasecurity">Datasecurity</a>
