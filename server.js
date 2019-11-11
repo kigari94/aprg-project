@@ -233,7 +233,7 @@ app.post('/login', function(req, res){
 //Aufrug Logout
 app.post('/logout',function(req,res){
     req.session.destroy;
-    res.send('start');
+    res.render('start', {msgLogin: "Logged out."});
 });
 
 // Aufruf Logout
