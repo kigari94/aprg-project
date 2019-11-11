@@ -18,17 +18,17 @@ body{
 /*HELPFULL*/
 /*BACKBUTTON*/
 .backbutton_design{
-  background: #212121;
-  color: white;
-  padding: 10px 20px;
-  border: 2px solid #04567c;
-  border-radius: 15px;
-  font-family: 'Courier New', Courier, monospace;
+    background: #212121;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #04567c;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
 }
 .backbutton_design:hover{
-  background-color: #0678ad;
-  color: #000000;
-  border: 2px solid #0678ad;
+    background-color: #0678ad;
+    color: #000000;
+    border: 2px solid #0678ad;
 }
 /* DESIGN LOGIN / REGISTER / CHANGE USER*/
 .box {
@@ -45,12 +45,12 @@ body{
     overflow: auto;
   }
 .box p{
-  color:white;
-  font-size: 20px;
+    color:white;
+    font-size: 20px;
 }
 .box p2{
-  color:#04567c;
-  font-size: 20px;
+    color:#04567c;
+    font-size: 20px;
 }
 #title{
     margin: 0;
@@ -121,7 +121,7 @@ h1{
   #register-form {
     display:none;
   }
-/*Switch states for changeuserdate*/
+/*SWITCH STATES FOR CHANGEUSERDATA*/
   #changeuser-switch{
     display:none;
   }
@@ -146,14 +146,14 @@ h1{
   #deleteacc-form{
     display:none;
   }
-/*change switch state for login/register*/
+/*CHANGE SWITCH STATE FOR LOGIN/REGISTER*/
   #form-switch:checked~#register-form {
     display:block
   }
   #form-switch:checked~#login-form {
     display:none
   }
-/*change switch state for changeuserdata*/
+/*CHANGE SWITCH STATE FOR CHANGEUSERDATA*/
   #changeuser-switch:checked~#changeuser-form {
     display:block
   }
@@ -228,7 +228,7 @@ h1{
 }
 
 /* HOME SITE STYLE */
-/*header top*/
+/*HEADER TOP*/
 .header{
     background-color: #1b1d1e;
     text-align: center;
@@ -236,14 +236,9 @@ h1{
 }
 .header h1{
     color: #04567c;
-  /*
-  text-shadow:  1px 1px 1px #04567c,
-                1px -1px 1px #04567c,
-                -1px 1px 1px #04567c,
-                -1px -1px 1px #04567c; 
-                */
 }
-/*nav container*/
+
+/*NAV CONTAINER*/
 .topnav{
     position: -webkit-sticky;
     position: sticky;
@@ -252,7 +247,7 @@ h1{
     background-color: #1b1d1e;
 
 }
-/*nav links*/
+/*NAV LINKS*/
 .topnav a{
     float: left;
     display:block;
@@ -270,7 +265,7 @@ h1{
     color: black;
 }
 
-/* side menu */
+/*SIDE MENU*/
 .sidenav{
     height: 100%;
     width: 0;
@@ -308,14 +303,14 @@ h1{
     font-size: 36px;
     margin-left: 50px;
 }
-
+/*RESPONSIVE DESIGN*/
 @media screen and (max-height: 450px){
     .sidenav {padding-top: 15px;}
     .sidenav a{font-size: 16px;}
 }
 
 
-/* Main Content 3variable column */
+/*MAIN BODY AND SIDE BODY*/
 #wrap{
     width: 90%;
     margin:0 auto;
@@ -349,11 +344,12 @@ h1{
     width: 100%;
     height: auto;
 }
+/*RESPONSIVE DESIGN FOR MAIN CONTENT*/
 @media screen and (max-width: 700px){
     #right_col{float:none;;visibility: hidden;}
     #left_col{width: 100%;}
 }
-/*Like button*/
+/*LIKE BUTTON DESIGN*/
 .wrap_likebox{
     width:90%;
     height: 30px;
@@ -379,7 +375,7 @@ h1{
     background-color: #0678ad;
     color: #000000;
 }
-/*footer style*/
+/*FOOTER STYLE*/
 .footer {
     clear: both;
     height: 10px;
