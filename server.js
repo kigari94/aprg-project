@@ -368,7 +368,7 @@ app.post('/upload', function(req, res) {
                 if(file.mimetype == "image/jpeg"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
                     dbpath = row.length.toString(10) + ".jpg";
-                }else if(file.mimetype == "image/png"){
+                }else if(file.mimetype == "image/png" || file.mimetype == "image/x-png"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".png";
                     dbpath = row.length.toString(10) + ".png";
                 }else if(file.mimetype == "image/gif"){
