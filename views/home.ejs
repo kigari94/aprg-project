@@ -49,6 +49,7 @@
                 document.getElementById("mySidenav").style.width = "0";
             }
             </script>
+            <!--MAIN BODY AND SIDE BODY-->
         <div id="wrap">
                 <div id="left_col">
                     <div id="left_col_box">
@@ -62,12 +63,15 @@
     
                      <div id="right_col_box">
                         <h1>THE BEST</h1>
-                        <% for (let i = 800; i < 810; i++){ %>
+                        <%let ran = Math.floor(Math.random()*700)%>
+                        <%let check = ran + 10 %>
+                        <% for (let i = ran ; i < check; i++){ %>
                             <img src="https://picsum.photos/id/<%=i%>/552/354">
                         <%}%>
                     </div>
                 </div>
             </div>
+            <!--FOOTER-->
         <div class="footer">
                 <p>© 2019 All Rights Reserved</p>
             </div>

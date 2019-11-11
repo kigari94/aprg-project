@@ -99,8 +99,8 @@ h1{
     transition: 0.25;
     font-family: 'Courier New', Courier, monospace;
 }
-    .box input[type = "text"]:focus,.box input[type  = "email"]:focus,.box input[type = "password"]:focus{
-        width: 280px;
+  .box input[type = "text"]:focus,.box input[type  = "email"]:focus,.box input[type = "password"]:focus{
+    width: 280px;
 }
   .box label {
     cursor:pointer;
@@ -121,7 +121,7 @@ h1{
   #register-form {
     display:none;
   }
-/*Switch states*/
+/*Switch states for changeuserdate*/
   #changeuser-switch{
     display:none;
   }
@@ -146,13 +146,14 @@ h1{
   #deleteacc-form{
     display:none;
   }
+/*change switch state for login/register*/
   #form-switch:checked~#register-form {
     display:block
   }
   #form-switch:checked~#login-form {
     display:none
   }
-/*change switch state*/
+/*change switch state for changeuserdata*/
   #changeuser-switch:checked~#changeuser-form {
     display:block
   }
@@ -190,9 +191,9 @@ h1{
     font-family: 'Courier New', Courier, monospace;
 }
 .box__button:hover{
-  background-color: #0678ad;
-  color: #000000;
-  border: 2px solid #0678ad;
+    background-color: #0678ad;
+    color: #000000;
+    border: 2px solid #0678ad;
 }
 .inputfile{
     width: 0.1px;
@@ -223,18 +224,18 @@ h1{
 .box__uploading,
 .box__success,
 .box__error {
-  display: none;
+    display: none;
 }
 
 /* HOME SITE STYLE */
 /*header top*/
 .header{
-  background-color: #1b1d1e;
-  text-align: center;
-  padding: 10px;
+    background-color: #1b1d1e;
+    text-align: center;
+    padding: 10px;
 }
 .header h1{
-  color: #04567c;
+    color: #04567c;
   /*
   text-shadow:  1px 1px 1px #04567c,
                 1px -1px 1px #04567c,
@@ -244,177 +245,156 @@ h1{
 }
 /*nav container*/
 .topnav{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  background-color: #1b1d1e;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background-color: #1b1d1e;
 
 }
 /*nav links*/
 .topnav a{
-  float: left;
-  display:block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  margin-left: 10px;
-  text-decoration: none;
-  border: 2px solid #0678ad;
-  border-radius: 5px;
+    float: left;
+    display:block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    margin-left: 10px;
+    text-decoration: none;
+    border: 2px solid #0678ad;
+    border-radius: 5px;
 }
 
 .topnav a:hover{
-  background-color: #0678ad;
-  color: black;
+    background-color: #0678ad;
+    color: black;
 }
 
 /* side menu */
 .sidenav{
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111111;
-  overflow-x: hidden;
-  transition: 0.5;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111111;
+    overflow-x: hidden;
+    transition: 0.5;
 
 }
 .bottom_box{
-  position: absolute;
-  bottom:8px;
-  left:3px;
+    position: absolute;
+    bottom:8px;
+    left:3px;
 }
 .sidenav a{
-  padding: 8px 8px 8px 8px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #04567c;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #04567c;
+    display: block;
+    transition: 0.3s;
 }
 
 .sidenav a:hover{
-  color: #0678ad;
+    color: #0678ad;
 }
 
 .sidenav .closebtn{
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 @media screen and (max-height: 450px){
-  .sidenav {padding-top: 15px;}
-  .sidenav a{font-size: 16px;}
+    .sidenav {padding-top: 15px;}
+    .sidenav a{font-size: 16px;}
 }
 
 
 /* Main Content 3variable column */
 #wrap{
-  width: 90%;
-  margin:0 auto;
+    width: 90%;
+    margin:0 auto;
 }
 #left_col{
-  float:left;
-  width: 85%;
-  background-color: #333333;
-  overflow: auto;
-  color:black;
+    float:left;
+    width: 85%;
+    background-color: #333333;
+    overflow: auto;
+    color:black;
 }
 #left_col_box{
-  margin: auto;
-  width: 85%;
+    margin: auto;
+    width: 85%;
 }
 #left_col_box img{
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 #right_col{
-  float: right;
-  width: 15%;
-  background-color: #333333;
-  text-align: center;
+    float: right;
+    width: 15%;
+    background-color: #333333;
+    text-align: center;
 }
 #right_col_box{
-  margin:auto;
-  width: 80%
+    margin:auto;
+    width: 80%
 }
 #right_col_box img{
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 @media screen and (max-width: 700px){
-  #right_col{float:none;;visibility: hidden;}
-  #left_col{width: 100%;}
+    #right_col{float:none;;visibility: hidden;}
+    #left_col{width: 100%;}
 }
 /*Like button*/
 .wrap_likebox{
-  width:90%;
-  height: 30px;
+    width:90%;
+    height: 30px;
 }
 .wrap_likebutton{
-  float: left;
-  background-color: #393939;
-  font-size: 20px;
-  color: white;
-  border: 2px solid #04567c;
-  border-radius: 2px;
-  font-family: 'Courier New', Courier, monospace;
+    float: left;
+    background-color: #393939;
+    font-size: 20px;
+    color: white;
+    border: 2px solid #04567c;
+    border-radius: 2px;
+    font-family: 'Courier New', Courier, monospace;
 }
 .wrap_likecounter{
-  float:right;
-  background-color: #393939;
-  font-size: 20px;
-  color: white;
-  border: 2px solid #04567c;
-  border-radius: 2px;
+    float:right;
+    background-color: #393939;
+    font-size: 20px;
+    color: white;
+    border: 2px solid #04567c;
+    border-radius: 2px;
 }
 .wrap_likebutton:hover{
-  background-color: #0678ad;
-  color: #000000;
+    background-color: #0678ad;
+    color: #000000;
 }
 /*footer style*/
 .footer {
-  clear: both;
-  height: 10px;
-  margin-top: -20px;
-  background-color: #212121;
+    clear: both;
+    height: 10px;
+    margin-top: -20px;
+    background-color: #212121;
 }
 .footer p{
-  text-align: right;
-  padding: 10px;
-  color: #f2f2f2;
+    text-align: right;
+    padding: 10px;
+    color: #f2f2f2;
 }
-/*
-.column{
-  float: left;
-  padding: 10px;
-}
-.column.side{
-  width: 15%;
-}
-.colum.middle{
-  width: 70%;
-}
-
-.row:after{
-  content: "";
-  display: table;
-  clear: both
-}
-
-*/
-
-
 
 /*ERROR ejs*/
  .error {
-   margin: 0;
+    margin: 0;
     padding: 0;
     text-align: center;
     font-size: 20px;
@@ -424,46 +404,46 @@ h1{
  }
 
  .error a:link{
-   color: #04567c;
+    color: #04567c;
  }
 
  .error a:visited{
-  color: #04567c;
+    color: #04567c;
 }
 
  .error a:hover {
-  color: #0678ad ;
+    color: #0678ad ;
  }
 
  /*COOKIES AND DATASECURITY. */
  .cookies {
-  margin: 0;
-   padding: 0;
-   text-align: left;
-   font-size: 18px;
-   font-family:'Courier New', Courier, monospace;
-   color: white;
-   background: #212121
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 18px;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    background: #212121
   }
 .cookies a:link {
-  color: #04567c
+    color: #04567c
 }
 .cookies a:visited {
-  color: #04567c
+    color: #04567c
 }
 .cookies a:hover {
-  color: #0678ad
+    color: #0678ad
 }
 
 /*BLOBFISH FAMILY AND WHO WE ARE/COMPANY INFORMATION */
 .blobfishfamily {
-  margin: 0;
-   padding: 0;
-   text-align: left;
-   font-size: 18px;
-   font-family:'Courier New', Courier, monospace;
-   color: white;
-   background: #212121
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 18px;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    background: #212121
   }
   .blobfishfamily a:link {
     color: #04567c

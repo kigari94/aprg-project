@@ -6,14 +6,16 @@
         <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
     </head>
     <body>
+            <!--BACK TO HOME BUTTON-->
             <form action="/home">
                 <button class="backbutton_design" type="submit"><strong>BACK TO HOME</strong></button>
             </form>
+            <!--SWITCH STATES FOR LAYER VISIBILITY-->
             <input type='checkbox' id='changeuser-switch'>
             <input type='checkbox' id='changepw-switch'>
             <input type='checkbox' id='changeemail-switch'>
             <input type='checkbox' id='deleteacc-switch'>
-            <!--Mainsite-->
+            <!--MAINSITE CHOOSE BAR-->
             <form class="box" id='main-form' method='POST'>
                 <h1 id="title">Userstuff</h1>
                 <p></p>
@@ -25,7 +27,7 @@
                 <p></p>
                 <label for='deleteacc-switch'><span>Delete account</span></label>
             </form>
-            <!--Change user-->
+            <!--BOX CHANGEUSER-->
             <form class="box" id='changeuser-form' action="/change_username" method='POST'>
                 <h1 id="title">Userstuff</h1>
                 <p>Username:<%=username%></p>
@@ -39,7 +41,7 @@
                 </div>
               <% } %>
             </form>
-            <!--Change password-->
+            <!--BOX CHANGE PASSWORD-->
             <form class="box" id='changepw-form' action="/change_password" method='POST'>
                 <h1 id="title">Userstuff</h1>
                 <p><strong>Change password</strong></p>
@@ -53,7 +55,7 @@
                 </div>
               <% } %>
             </form>
-            <!--Change email-->
+            <!--BOX CHANGE EMAIL-->
             <form class="box" id='changeemail-form' action="/change_mailadress" method='POST'>
                 <h1 id="title">Userstuff</h1>
                 <p2><%=email%></p2>
@@ -67,7 +69,7 @@
                 </div>
               <% } %>
             </form>
-            <!--Delete Account-->
+            <!--BOX DELETE ACCOUNT-->
             <form class="box" id='deleteacc-form' action="/delete_account" method='POST'>
                 <h1 id="title">Userstuff</h1>
                 <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
