@@ -49,7 +49,8 @@ app.get('/start', function(req, res){
     if (!req.session.username){
         res.render('start');
     }else{
-        res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+        homeLoader(req,res,`Logged in as: ${req.session.username}`);
+        //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
 
