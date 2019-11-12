@@ -279,20 +279,17 @@ app.post('/change_mailadress', function(req,res){
             return res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
                 username: req.session.username, 
                 email: req.session.email});
-        }
-    });
-
-    db.get(sql, function(err, row){
-        if(err){
-            res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
-                username: req.session.username, 
-                email: req.session.email});
-            console.error(err);
         }else{
-            res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
-                username: req.session.username,
-                email: req.session.email
-            })
+            db.get(sql, function(err, row){
+                if(err){
+                    
+                }else{
+                    res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
+                        username: req.session.username,
+                        email: req.session.email
+                    })
+                }
+            });
         }
     });
 });
