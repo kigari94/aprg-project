@@ -54,7 +54,6 @@ app.get('/start', function(req, res){
     }
 });
 
-
 function homeLoader(req,res, displayedMsg){
     let sql = 'SELECT path FROM images;';
         db.all(sql, function(err, row){
