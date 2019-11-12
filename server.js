@@ -247,7 +247,7 @@ app.post('/change_username', function(req,res){
     db.get(sql, function(err, row){
         if(err){
             //res.end('Something went wrong or user already exists');
-            res.render('changeuserdata',{msgChange: 'User has been already taken',
+            res.render('changeuserdata',{msgChangeUser: 'User has been already taken',
                 username: req.session.username, 
                 email: req.session.email
             });
@@ -273,12 +273,12 @@ app.post('/change_mailadress', function(req,res){
     WHERE username = "${req.session.username}";`
     db.get(sql, function(err, row){
         if(err){
-            res.render('changeuserdata',{msgChange: 'email has been already taken',
+            res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
                 username: req.session.username, 
                 email: req.session.email});
             console.error(err);
         }else{
-            res.render('changeuserdata',{msgChange: 'Email has been changed', 
+            res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
                 username: req.session.username,
                 email: new_email
             })
@@ -303,14 +303,14 @@ app.post('/change_password', function(req,res){
                 res.end(err);
                 console.error(err);
             }else{
-                res.render('changeuserdata',{msgChange: 'Password has been changed', 
+                res.render('changeuserdata',{msgChangePassword: 'Password has been changed', 
                     username: req.session.username,
                     email: new_email
                 });
             }
             });
     }else{
-        res.render('changeuserdata',{msgChange: 'Password did not matched re', 
+        res.render('changeuserdata',{msgChangePassword: 'Password did not matched re', 
                     username: req.session.username,
                     email: new_email
                 });
@@ -331,14 +331,14 @@ app.post('/delete_account', function(req,res){
                     console.log(err);
                 }else
                 {
-                    res.render('start',{msgLogin:'User was deleted'});
+                    res.render('start',{msgLoginDelete:'User was deleted'});
                 }
             });
         }
     });
 });
 
-// ToDo: Funktion zur Speicherung der Bilddateien 
+// Funktion zur Speicherung der Bilddateien 
 app.post('/upload', function(req, res) {
     console.log(req.files);
     const username = req.session.username;
@@ -391,5 +391,3 @@ app.post('/upload', function(req, res) {
         return res.render('upload', {msgUpload: 'File was to big!' });
     }
 });
-
-// ToDo: Funktion zur Rueckgabe der Bilddateien + Username, Title
