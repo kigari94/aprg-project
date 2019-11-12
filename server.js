@@ -6,7 +6,6 @@ const fileupload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
 app.use(fileupload());
-
 app.use(express.static('files'))
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -25,7 +24,8 @@ const session = require('express-session');
 app.use(session({
     secret: 'loggedIn',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    maxAge: 3 * 60 * 60 * 1000
 }));
 
 // Webserver starten
@@ -232,8 +232,8 @@ app.post('/login', function(req, res){
 
 //Aufruf Logout
 app.post('/logout',function(req,res){
-    req.session.destroy;
-    res.render('start', {msgLogin: "Succrsfully logged out."});
+    req.session.destroy(function(err) {});
+    res.render('start', {msgLogin: "Succesfully logged out."});
 });
 
 // Post for change_username
