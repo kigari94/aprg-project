@@ -258,7 +258,7 @@ app.post('/change_username', function(req,res){
             res.render('changeuserdata',{
                 username: req.session.username,
                 email: req.session.email,
-                msgChange: 'Succesfully Changed'
+                msgChangeUser: 'Succesfully Changed'
             });
         }
     });
