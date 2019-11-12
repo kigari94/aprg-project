@@ -271,6 +271,17 @@ app.post('/change_mailadress', function(req,res){
     let sql = `UPDATE users
     SET email = "${new_email}"
     WHERE username = "${req.session.username}";`
+
+    let check = `SELECT * FROM users WHERE email == "${new_email}";`
+
+    db.all(check, function(err, row){
+        if(row.lenth !=0){
+            return res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
+                username: req.session.username, 
+                email: req.session.email});
+        }
+    });
+
     db.get(sql, function(err, row){
         if(err){
             res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
