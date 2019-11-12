@@ -26,6 +26,26 @@
                 <label for='changeemail-switch'><span>Email change</span></label>
                 <p></p>
                 <label for='deleteacc-switch'><span>Delete account</span></label>
+                <% if (typeof msgChangeUser != "undefined") { %>
+                  <div>
+                      <p id="errorMessage"> <%= msgChangeUser %></p>
+                  </div>
+                <% } %>
+                <% if (typeof msgChangePassword != "undefined") { %>
+                  <div>
+                      <p id="errorMessage"> <%= msgChangePassword %></p>
+                  </div>
+                <% } %>
+                <% if (typeof msgChangeEmail != "undefined") { %>
+                  <div>
+                      <p id="errorMessage"> <%= msgChangeEmail %></p>
+                  </div>
+                <% } %>
+                <% if (typeof msgChangeDelete != "undefined") { %>
+                  <div>
+                      <p id="errorMessage"> <%= msgChangeDelete %></p>
+                  </div>
+                <% } %>
             </form>
             <!--BOX CHANGEUSER-->
             <form class="box" id='changeuser-form' action="/change_username" method='POST'>
@@ -35,11 +55,7 @@
                 <input type="text" name="new_username" placeholder="New Username" required>
                 <input type="submit" value="Change">
               <label for='changeuser-switch'><span>Back</span></label>
-              <% if (typeof msgChangeUser != "undefined") { %>
-                <div>
-                    <p id="errorMessage"> <%= msgChangeUser %></p>
-                </div>
-              <% } %>
+
             </form>
             <!--BOX CHANGE PASSWORD-->
             <form class="box" id='changepw-form' action="/change_password" method='POST'>
@@ -49,25 +65,18 @@
                 <input type="password" name="new_password_repeat" placeholder="RE Password" required>
                 <input type="submit" value="Change">
               <label for='changepw-switch'>Back</label>
-              <% if (typeof msgChangePassword != "undefined") { %>
-                <div>
-                    <p id="errorMessage"> <%= msgChangePassword %></p>
-                </div>
-              <% } %>
+
             </form>
             <!--BOX CHANGE EMAIL-->
             <form class="box" id='changeemail-form' action="/change_mailadress" method='POST'>
+              <p></p>
                 <h1 id="title">Userstuff</h1>
                 <p2><%=email%></p2>
                 <p><strong>Change email</strong></p>
                 <input type="email" name="new_email" placeholder="New E-Mail" required>
                 <input type="submit" value="Send me a mail!">
               <label for='changeemail-switch'>Back</label>
-              <% if (typeof msgChangeEmail != "undefined") { %>
-                <div>
-                    <p id="errorMessage"> <%= msgChangeEmail %></p>
-                </div>
-              <% } %>
+              <p></p>
             </form>
             <!--BOX DELETE ACCOUNT-->
             <form class="box" id='deleteacc-form' action="/delete_account" method='POST'>
@@ -75,11 +84,7 @@
                 <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
               <input type="submit" value="DELETE">
               <label for='deleteacc-switch'>Back</label>
-              <% if (typeof msgChangeDelete != "undefined") { %>
-                <div>
-                    <p id="errorMessage"> <%= msgChangeDelete %></p>
-                </div>
-              <% } %>
+
             </form>
     </body>
 </html>

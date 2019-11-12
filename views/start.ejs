@@ -19,6 +19,11 @@
                     <p id="errorMessage"> <%= msgLogin %></p>
                 </div>
               <% } %>
+              <% if (typeof msgChangeDelete != "undefined") { %>
+                <div>
+                    <p id="errorMessage"> <%= msgChangeDelete %></p>
+                </div>
+              <% } %>
             </form>
             <form class="box" id='register-form' action="/register" method='POST'>
                 <h1 id="title">BLOBFISH</h1>
