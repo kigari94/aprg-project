@@ -251,7 +251,6 @@ app.post('/change_username', function(req,res){
                 username: req.session.username, 
                 email: req.session.email
             });
-            console.error(err);
         }else{
             req.session.username = new_username
             
@@ -275,18 +274,18 @@ app.post('/change_mailadress', function(req,res){
     let check = `SELECT * FROM users WHERE email == "${new_email}";`
 
     db.all(check, function(err, row){
-        if(row.lenth !=0){
-            return res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
+        if(row.length !=0){
+            res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
                 username: req.session.username, 
                 email: req.session.email});
         }else{
             db.get(sql, function(err, row){
                 if(err){
-                    
+
                 }else{
                     res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
                         username: req.session.username,
-                        email: req.session.email
+                        email: new_email
                     })
                 }
             });
