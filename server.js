@@ -230,7 +230,7 @@ app.post('/login', function(req, res){
     });
 });
 
-//Aufrug Logout
+//Aufruf Logout
 app.post('/logout',function(req,res){
     req.session.destroy;
     res.render('start', {msgLogin: "Succrsfully logged out."});
