@@ -379,9 +379,9 @@ app.post('/upload', function(req, res) {
                         return res.render('upload', {msgUpload: 'Somthing went wrong'});
                     } else {
                         file.mv(path);
-                        
+                        return res.render('upload', {msgUpload: 'Upload Succed'});
                         //return res.render('home',{msg : 'UploadSucced'});
-                        homeLoader(req,res,"Upload suceed!");
+                        //homeLoader(req,res,"Upload suceed!");
                     }
                 });
             }
