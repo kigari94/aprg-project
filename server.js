@@ -256,7 +256,7 @@ app.post('/change_username', function(req,res){
             req.session.username = new_username
             
             res.render('changeuserdata',{
-                username: new_username,
+                username: req.session.username,
                 email: req.session.email,
                 msgChange: 'Succesfully Changed'
             });
@@ -280,7 +280,7 @@ app.post('/change_mailadress', function(req,res){
         }else{
             res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
                 username: req.session.username,
-                email: new_email
+                email: req.session.email
             })
         }
     });
@@ -305,14 +305,14 @@ app.post('/change_password', function(req,res){
             }else{
                 res.render('changeuserdata',{msgChangePassword: 'Password has been changed', 
                     username: req.session.username,
-                    email: new_email
+                    email: req.session.email
                 });
             }
             });
     }else{
         res.render('changeuserdata',{msgChangePassword: 'Password did not matched re', 
                     username: req.session.username,
-                    email: new_email
+                    email: req.session.email
                 });
     }
 });
@@ -331,7 +331,7 @@ app.post('/delete_account', function(req,res){
                     console.log(err);
                 }else
                 {
-                    res.render('start',{msgLoginDelete:'User was deleted'});
+                    res.render('start',{msgChangeDelete:'User was deleted'});
                 }
             });
         }
