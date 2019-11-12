@@ -24,6 +24,7 @@ body{
     border: 2px solid #04567c;
     border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
 }
 .backbutton_design:hover{
     background-color: #0678ad;
@@ -270,6 +271,7 @@ h1{
 .topnav a:hover{
     background-color: #0678ad;
     color: black;
+    font-weight: bold;
 }
 
 /*SIDE MENU*/
@@ -295,6 +297,7 @@ h1{
     background-color: #111111;
     border: 2px solid #111111;
     text-decoration: none;
+    font-weight: bold;
     font-size: 20px;
     color: #04567c;
     display: block;
@@ -305,6 +308,26 @@ h1{
     color: #0678ad;
 }
 
+/* SIDENAV LOGOUT ONLY */
+.sidenavlogout a,.sidenavlogout input{
+  padding: 8px 8px 8px 8px;
+  background-color: #111111;
+  border: 2px solid #111111;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  color: #04567c;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenavlogout a:hover,.sidenavlogout input:hover{
+  color: #0678ad;
+  cursor: pointer;
+}
+
+/* REST SIDEBAR*/
 .sidenav .closebtn{
     position: absolute;
     top: 0;
@@ -323,17 +346,20 @@ h1{
 #wrap{
     width: 90%;
     margin:0 auto;
+    background-color: white;
 }
 #left_col{
     float:left;
     width: 85%;
-    background-color: #333333;
+    background-color: #212121;
     overflow: auto;
     color:black;
 }
+
 #left_col_box{
     margin: auto;
     width: 85%;
+    background-color: #212121;
 }
 #left_col_box img{
     width: 100%;
@@ -342,7 +368,7 @@ h1{
 #right_col{
     float: right;
     width: 15%;
-    background-color: #333333;
+    background-color: #1b1d1e;
     text-align: center;
 }
 #right_col_box{
@@ -459,3 +485,50 @@ h1{
   .blobfishfamily a:hover {
     color: #0678ad
   }
+
+ /*Datasec LAYOUT*/
+ #middle_col{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  float:left;
+  width: 100%;
+  background-color: #212121;
+  overflow: auto;
+  color:white;
+}
+#middle_col_box{
+  margin:auto;
+  width: 80%;
+  padding: 10px;
+  background-color: #212121;
+  border: 2px solid #04567c;
+  border-radius: 5px;
+}
+#middle_col_box p{
+  color: white;
+}
+#middle_col_box h1{
+  color: #04567c;
+}
+
+#title{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+    color: #04567c;
+}
+h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+/*FOOTER STYLE*/
+.footer_text {
+  height: 50px;
+  margin-top: -50px;
+  background-color: #f2f2f2;
+  text-align: center;
+}
