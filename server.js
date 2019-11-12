@@ -49,7 +49,8 @@ app.get('/start', function(req, res){
     if (!req.session.username){
         res.render('start');
     }else{
-        res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+        homeLoader(req,res,`Logged in as: ${req.session.username}`);
+        //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
     }
 });
 
@@ -64,14 +65,33 @@ function homeLoader(req,res, displayedMsg){
                 if(row.length == 0)
                 {
                     console.log('no entrys')
-                    res.render('home', { authSuccessMessage: displayedMsg,
-                        username: req.session.username,
-                        email: req.session.email});
+                    res.end('no entrys');
                 }
                 else{
-                    res.render('home', {authSuccessMessage: displayedMsg, paths: row.path, title: row.title,
-                    username: req.session.username,
-                    email: req.session.email});
+                    res.render('home', {    authSuccessMessage: displayedMsg, paths: row,
+                        username: req.session.username, 
+                        email: req.session.email});
+                }
+            }
+        });
+}
+
+function homeLoader(req,res, displayedMsg, username, email){
+    let sql = 'SELECT path FROM images;';
+        db.all(sql, function(err, row){
+            if(err){
+                //res.end(err);
+                console.error(err);
+            }else{
+                if(row.length == 0)
+                {
+                    console.log('no entrys')
+                    res.end('no entrys');
+                }
+                else{
+                    res.render('home', {    authSuccessMessage: displayedMsg, paths: row, 
+                        username: username, 
+                        email: email});
                 }
             }
         });
@@ -91,25 +111,7 @@ app.get('/home', function(req, res){
     if (!req.session.username){
         res.render('start', {authDeniedMessage: "Not logged in yet!"});
     }else{
-        //Arrayübergabe paths head
-        let sql = 'SELECT path FROM images;';
-        db.all(sql, function(err, row){
-            if(err){
-                //res.end(err);
-                console.error(err);
-            }else{
-                if(row.length == 0)
-                {
-                    console.log('no entrys')
-                    res.end('no entrys');
-                }
-                else{
-                    res.render('home', {    authSuccessMessage: `Logged in as: ${req.session.username}`, paths: row});
-                }
-            }
-        });
-        //Arrayübergabe paths foot
-        //res.render('home', {authSuccessMessage: `Logged in as: ${req.session.username}`});
+        homeLoader(req,res,`Logged in as: ${req.session.username}`);
     }
 });
 
@@ -188,10 +190,7 @@ app.post('/register', function(req, res) {
                         req.session.username = username;
                         req.session.email = email;
 
-                        res.render('home', { 
-                            username: req.session.username,
-                            email: req.session.email
-                        });
+                        homeLoader(req,res, "", username,email)
                     }
                 });
             }
@@ -220,10 +219,7 @@ app.post('/login', function(req, res){
                     req.session.username = row.username;
                     req.session.email = row.email;
                     
-                    res.render('home', { 
-                        username: req.session.username,
-                        email: req.session.email
-                    });            
+                    homeLoader(req,res,"")            
                 }else{
                     res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
                 }
@@ -234,18 +230,11 @@ app.post('/login', function(req, res){
     });
 });
 
-//Für den logoutbutton
+//Aufruf Logout
 app.post('/logout',function(req,res){
-    res.session.destroy;
-    res.send('start');
+    req.session.destroy;
+    res.render('start', {msgLogin: "Succrsfully logged out."});
 });
-
-// Aufruf Logout
-// app.post('/logout', function(req, res){
-//     delete req.session.username;
-//     delete req.session.email;
-//     res.render('start', {msgLogout: "Successfully logged out."});           
-// });
 
 // Post for change_username
 app.post('/change_username', function(req,res){
@@ -342,7 +331,7 @@ app.post('/delete_account', function(req,res){
                     console.log(err);
                 }else
                 {
-                    res.send ('start',{msgRegister:'User was eleted'});
+                    res.render('start',{msgLogin:'User was deleted'});
                 }
             });
         }
@@ -355,20 +344,17 @@ app.post('/upload', function(req, res) {
     const username = req.session.username;
     const title = req.body.title;
     const file = req.files.file;
+    const maxUpload = 1024 * 1024 * 10; // in bytes.
     let path = __dirname + '/files/' + file.name;
 
 
     console.log(file.size);
 
-    if(file.size < 1024 * 1024 * 50){
-        //file.mv(__dirname + '/files/' + file.name)
-        //res.send('uploaded: ' + file.name + ' by: ' + username);
-        //SQL Befehl um einen neuen Eintrag der Tabelle user hinzuzufügen
-        //Handling for if datbase is empty
+    if(file.size < maxUpload){
         let sql = `SELECT * FROM images;`;
         db.all(sql, function(err, row){
             if (err){ 
-                console.log(`Somthing went wrong`);
+                console.log(err);
             }else{
 
                 let dbpath;
@@ -376,27 +362,33 @@ app.post('/upload', function(req, res) {
                 if(file.mimetype == "image/jpeg"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".jpg";
                     dbpath = row.length.toString(10) + ".jpg";
-                }else if(file.mimetype = "image/png"){
+                }else if(file.mimetype == "image/png" || file.mimetype == "image/x-png"){
                     path = __dirname + '/files/' + row.length.toString(10) + ".png";
                     dbpath = row.length.toString(10) + ".png";
-                }else{
-                    return res.end('unzulässiger Datentyp');
+                }else if(file.mimetype == "image/gif"){
+                    path = __dirname + '/files/' + row.length.toString(10) + ".gif";
+                    dbpath = row.length.toString(10) + ".gif";
+                }
+                else{
+                    return res.render('upload', {msg: 'unzulässiger Datentyp'});
                 }
 
                 sql = `INSERT INTO images (path, title, username, date) VALUES ("${dbpath}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
-                        return res.render('upload', {msgUpload: 'Somthing went wrong' });
+                        return res.render('upload', {msgUpload: 'Somthing went wrong'});
                     } else {
                         file.mv(path);
-                        return res.render('home',{msg : 'UploadSucced'});
+                        return res.render('upload', {msgUpload: 'Upload Succed'});
+                        //return res.render('home',{msg : 'UploadSucced'});
+                        //homeLoader(req,res,"Upload suceed!");
                     }
                 });
             }
         });
     }else{
         //file was to big
-        return res.render('upload', {msgUpload: 'file was to big!' });
+        return res.render('upload', {msgUpload: 'File was to big!' });
     }
 });
 

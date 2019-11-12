@@ -17,6 +17,7 @@
         </script>
         <div class="header">
             <h1><strong>Blobfish!</strong> Your daily dose of funny pictures</h1>
+            <!--LIKE BUTTON-->
             <!-- <div class="wrap_likebox">
                 <button class="wrap_likebutton"  onclick="AddClick()">LIKE THIS SITE!!</button>
                 <span id="CountedClicks" class="wrap_likecounter">0 LIKES</span><br>
@@ -25,15 +26,17 @@
 
         <!--TOP NAVIGATION-->
         <div class="topnav">
-            <a href="#">LINK1</a>
-            <a href="#">LINK2</a>
-            <a href="#">LINK3</a>
+            <a href="#">Back to top!</a>
+            <!--<a href="#">LINK2</a>
+            <a href="#">LINK3</a>-->
         </div>
         <!--SIDE SLIDE NAVIGATION-->
         <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)"  class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="bottom_box">
-                    <a href="/start"><strong>LOGOUT</strong></a>
+                    <form action='/logout' method='POST'>
+                        <input type="submit" value="LOGOUT">
+                    </form>
                     <a href="/changeuserdata">User</a>
                     <a href="/upload">Upload your shit</a>
                     <a href="/cookies_datasecurity">Datasecurity</a>
@@ -49,6 +52,7 @@
                 document.getElementById("mySidenav").style.width = "0";
             }
             </script>
+            <!--MAIN BODY AND SIDE BODY-->
         <div id="wrap">
                 <div id="left_col">
                     <div id="left_col_box">
@@ -62,12 +66,15 @@
     
                      <div id="right_col_box">
                         <h1>THE BEST</h1>
-                        <% for (let i = 800; i < 810; i++){ %>
+                        <%let ran = Math.floor(Math.random()*700)%>
+                        <%let check = ran + 10 %>
+                        <% for (let i = ran ; i < check; i++){ %>
                             <img src="https://picsum.photos/id/<%=i%>/552/354">
                         <%}%>
                     </div>
                 </div>
             </div>
+            <!--FOOTER-->
         <div class="footer">
                 <p>© 2019 All Rights Reserved</p>
             </div>
