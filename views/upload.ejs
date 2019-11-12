@@ -14,21 +14,36 @@
             <button class="backbutton_design" type="submit"><strong>BACK TO HOME</strong></button>
         </form>
         <!--UPLOADBOX / ACCEPT ONLY PNG,GIF,JPEG-->
-        <form class="box" method="post" action="/upload" enctype="multipart/form-data">
-            <h1>Upload your Blobpics!</h1>
-            <div class="box__input">
-              <input class="inputfile" type="file" name="file" id="file" accept="image/x-png,image/gif,image/jpeg"/>
-              <label for="file"><strong>Choose a file</strong></label>
-              <p></p>
-              <button class="box__button" type="submit">Upload</button>
-            </div>
-            <div class="box__uploading">Uploading&hellip;</div>
-            <div class="box__success">Done!</div>
-            <div class="box__error">Error! <span></span>.</div>
-            <% if(typeof msgChange != "undefined"){%>
-                    <h1><%=msgUpload%></h1>
-            <%}%>
-               
-          </form>
+        <form class="box" method="POST" action="/upload" enctype="multipart/form-data">
+            <h1 id="title2">Upload images</h1>
+            
+
+                <% if(typeof msgUpload != "undefined"){%>
+                    <p><strong><%=msgUpload%></strong></p>
+                <%}else{%>
+                    <input class="inputfile" type="file" name="file" id="file-upload" accept="image/x-png,image/gif,image/jpeg" multiple required/>
+                    <label for="file-upload"><strong>Choose a file</strong></label>
+                    <p></p>
+                    <p><strong><div id="file-upload-filename"></div></strong></p>
+                    <button class="box__button" type="submit">Upload</button>
+                <%}%>
+                <p></p>
+
+        </form>
+        <!--GET FILE NAME-->
+        <script>
+            var input = document.getElementById( 'file-upload' );
+            var infoArea = document.getElementById( 'file-upload-filename' );
+            input.addEventListener( 'change', showFileName );
+            function showFileName( event ) {
+                // var for understanding
+                var input = event.srcElement;
+                // array for the name
+                var fileName = input.files[0].name;
+                // add it into a div
+                infoArea.textContent = 'Your file: ' + fileName;
+            }
+        </script>
     </body>
 </html>
+
