@@ -69,7 +69,7 @@ function homeLoader(req,res, displayedMsg){
                 }
                 else{
                     res.render('home', {    authSuccessMessage: displayedMsg, paths: row,
-                        username: req.session,username, 
+                        username: req.session.username, 
                         email: req.session.email});
                 }
             }
