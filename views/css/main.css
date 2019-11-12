@@ -24,6 +24,7 @@ body{
     border: 2px solid #04567c;
     border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
 }
 .backbutton_design:hover{
     background-color: #0678ad;
@@ -316,6 +317,7 @@ h1{
 #wrap{
     width: 90%;
     margin:0 auto;
+    background-color: white;
 }
 #left_col{
     float:left;
@@ -324,9 +326,11 @@ h1{
     overflow: auto;
     color:black;
 }
+
 #left_col_box{
     margin: auto;
     width: 85%;
+    background-color: #333333;
 }
 #left_col_box img{
     width: 100%;
@@ -452,3 +456,50 @@ h1{
   .blobfishfamily a:hover {
     color: #0678ad
   }
+
+ /*Datasec LAYOUT*/
+ #middle_col{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  float:left;
+  width: 100%;
+  background-color: #212121;
+  overflow: auto;
+  color:white;
+}
+#middle_col_box{
+  margin:auto;
+  width: 80%;
+  padding: 10px;
+  background-color: #212121;
+  border: 2px solid #04567c;
+  border-radius: 5px;
+}
+#middle_col_box p{
+  color: white;
+}
+#middle_col_box h1{
+  color: #04567c;
+}
+
+#title{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+    color: #04567c;
+}
+h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+/*FOOTER STYLE*/
+.footer_text {
+  height: 50px;
+  margin-top: -50px;
+  background-color: #f2f2f2;
+  text-align: center;
+}
