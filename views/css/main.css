@@ -59,6 +59,13 @@ body{
     text-align: center;
     color: #04567c;
 }
+#title2{
+  margin:0;
+  padding-bottom: 50px;
+  font-size: 50px;
+  text-align: center;
+  color: #04567c;
+}
 h1{
     color: white;
     text-transform: uppercase;
@@ -109,6 +116,10 @@ h1{
     padding: 2px 20px;
     border-radius: 5px;
     
+  }
+  #file-upload-filename{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
   }
   .box label:hover{
     color: white;
@@ -215,16 +226,12 @@ h1{
     display: inline-block;
     cursor: pointer;
 }
+.inputfile p{
+  color:white;
+}
 .inputfile:focus + label,
 .inputfile + label:hover{
     background-color: #0678ad;
-}
-
-.box__dragndrop,
-.box__uploading,
-.box__success,
-.box__error {
-    display: none;
 }
 
 /* HOME SITE STYLE */
