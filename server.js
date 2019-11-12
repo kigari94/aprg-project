@@ -250,14 +250,13 @@ app.post('/change_username', function(req,res){
                 username: req.session.username, 
                 email: req.session.email
             });
-            console.error(err);
         }else{
             req.session.username = new_username
             
             res.render('changeuserdata',{
                 username: req.session.username,
                 email: req.session.email,
-                msgChange: 'Succesfully Changed'
+                msgChangeUser: 'Succesfully Changed'
             });
         }
     });
@@ -270,17 +269,25 @@ app.post('/change_mailadress', function(req,res){
     let sql = `UPDATE users
     SET email = "${new_email}"
     WHERE username = "${req.session.username}";`
-    db.get(sql, function(err, row){
-        if(err){
+
+    let check = `SELECT * FROM users WHERE email == "${new_email}";`
+
+    db.all(check, function(err, row){
+        if(row.length !=0){
             res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
                 username: req.session.username, 
                 email: req.session.email});
-            console.error(err);
         }else{
-            res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
-                username: req.session.username,
-                email: req.session.email
-            })
+            db.get(sql, function(err, row){
+                if(err){
+
+                }else{
+                    res.render('changeuserdata',{msgChangeEmail: 'Email has been changed', 
+                        username: req.session.username,
+                        email: new_email
+                    })
+                }
+            });
         }
     });
 });
