@@ -244,20 +244,26 @@ app.post('/change_username', function(req,res){
     SET username = "${new_username}"
     WHERE username = "${req.session.username}";`
 
-    db.get(sql, function(err, row){
-        if(err){
-            //res.end('Something went wrong or user already exists');
+    let check = `SELECT * FROM users WHERE username == "${new_username}";`
+    db.all(check, function(err,row){
+        if(row.length != 0){
             res.render('changeuserdata',{msgChangeUser: 'User has been already taken',
                 username: req.session.username, 
                 email: req.session.email
             });
         }else{
-            req.session.username = new_username
-            
-            res.render('changeuserdata',{
-                username: req.session.username,
-                email: req.session.email,
-                msgChangeUser: 'Succesfully Changed'
+            db.get(sql, function(err, row){
+                if(err){
+
+                }else{
+                    req.session.username = new_username
+                    
+                    res.render('changeuserdata',{
+                        username: new_username,
+                        email: req.session.email,
+                        msgChangeUser: 'Succesfully Changed'
+                    });
+                }
             });
         }
     });
