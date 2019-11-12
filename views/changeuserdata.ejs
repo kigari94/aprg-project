@@ -35,9 +35,9 @@
                 <input type="text" name="new_username" placeholder="New Username" required>
                 <input type="submit" value="Change">
               <label for='changeuser-switch'><span>Back</span></label>
-              <% if (typeof msgChange != "undefined") { %>
+              <% if (typeof msgChangeUser != "undefined") { %>
                 <div>
-                    <p id="errorMessage"> <%= msgChange %></p>
+                    <p id="errorMessage"> <%= msgChangeUser %></p>
                 </div>
               <% } %>
             </form>
@@ -49,9 +49,9 @@
                 <input type="password" name="new_password_repeat" placeholder="RE Password" required>
                 <input type="submit" value="Change">
               <label for='changepw-switch'>Back</label>
-              <% if (typeof msgChange != "undefined") { %>
+              <% if (typeof msgChangePassword != "undefined") { %>
                 <div>
-                    <p id="errorMessage"> <%= msgChange %></p>
+                    <p id="errorMessage"> <%= msgChangePassword %></p>
                 </div>
               <% } %>
             </form>
@@ -63,9 +63,9 @@
                 <input type="email" name="new_email" placeholder="New E-Mail" required>
                 <input type="submit" value="Send me a mail!">
               <label for='changeemail-switch'>Back</label>
-              <% if (typeof msgChange != "undefined") { %>
+              <% if (typeof msgChangeEmail != "undefined") { %>
                 <div>
-                    <p id="errorMessage"> <%= msgChange %></p>
+                    <p id="errorMessage"> <%= msgChangeEmail %></p>
                 </div>
               <% } %>
             </form>
@@ -75,6 +75,11 @@
                 <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
               <input type="submit" value="DELETE">
               <label for='deleteacc-switch'>Back</label>
+              <% if (typeof msgChangeDelete != "undefined") { %>
+                <div>
+                    <p id="errorMessage"> <%= msgChangeDelete %></p>
+                </div>
+              <% } %>
             </form>
     </body>
 </html>

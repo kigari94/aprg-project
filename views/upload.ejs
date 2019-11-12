@@ -6,9 +6,6 @@
         <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
     </head>
     <body>
-        <!-- Here goes the content -->
-        <!-- ToDo: Prüfen, ob die File ein .jpg, .png, oder .gif ist -->
-        <!-- ToDo: File size überprüfen max. größe -->
         <!--BACK TO HOME BUTTON-->
         <form action="/home">
             <button class="backbutton_design" type="submit"><strong>BACK TO HOME</strong></button>
@@ -16,7 +13,6 @@
         <!--UPLOADBOX / ACCEPT ONLY PNG,GIF,JPEG-->
         <form class="box" method="POST" action="/upload" enctype="multipart/form-data">
             <h1 id="title2">Upload images</h1>
-            
 
                 <% if(typeof msgUpload != "undefined"){%>
                     <p><strong><%=msgUpload%></strong></p>
