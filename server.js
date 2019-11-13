@@ -64,7 +64,7 @@ function homeLoader(req,res, displayedMsg){
                 if(row.length == 0)
                 {
                     console.log('no entrys')
-                    res.end('no entrys');
+                    res.render('home', {msgEntries: 'no entrys'});
                 }
                 else{
                     res.render('home', {    authSuccessMessage: displayedMsg, paths: row,
@@ -75,26 +75,26 @@ function homeLoader(req,res, displayedMsg){
         });
 }
 
-function homeLoader(req,res, displayedMsg, username, email){
-    let sql = 'SELECT path FROM images;';
-        db.all(sql, function(err, row){
-            if(err){
-                //res.end(err);
-                console.error(err);
-            }else{
-                if(row.length == 0)
-                {
-                    console.log('no entrys')
-                    res.render('home', {msgEntries: 'no entrys'});
-                }
-                else{
-                    res.render('home', {    authSuccessMessage: displayedMsg, paths: row, 
-                        username: username, 
-                        email: email});
-                }
-            }
-        });
-}
+// function homeLoader(req,res, displayedMsg, username, email){
+//     let sql = 'SELECT path FROM images;';
+//         db.all(sql, function(err, row){
+//             if(err){
+//                 //res.end(err);
+//                 console.error(err);
+//             }else{
+//                 if(row.length == 0)
+//                 {
+//                     console.log('no entrys')
+//                     res.render('home', {msgEntries: 'no entrys'});
+//                 }
+//                 else{
+//                     res.render('home', {    authSuccessMessage: displayedMsg, paths: row, 
+//                         username: username, 
+//                         email: email});
+//                 }
+//             }
+//         });
+// }
 
 // Ausgabe der Account-Page
 app.get('/account', function(req, res){
@@ -189,7 +189,8 @@ app.post('/register', function(req, res) {
                         req.session.username = username;
                         req.session.email = email;
 
-                        homeLoader(req,res, "", username,email)
+                        res.redirect('/home');
+                        // homeLoader(req,res, "", username,email)
                     }
                 });
             }
@@ -218,7 +219,8 @@ app.post('/login', function(req, res){
                     req.session.username = row.username;
                     req.session.email = row.email;
                     
-                    homeLoader(req,res,"")            
+                    res.redirect('/home');
+                    // homeLoader(req,res,"")            
                 }else{
                     res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
                 }
