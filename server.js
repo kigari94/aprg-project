@@ -45,7 +45,7 @@ let db = new sqlite3.Database('web.db', function(err) {
 });
 
 // Ausgabe des Login- bzw. Registrieren-Formulars
-app.get('/start', function(req, res){
+app.get('/', function(req, res){
     if (!req.session.username){
         res.render('start');
     }else{
@@ -85,7 +85,7 @@ function homeLoader(req,res, displayedMsg, username, email){
                 if(row.length == 0)
                 {
                     console.log('no entrys')
-                    res.end('no entrys');
+                    res.render('home', {msgEntries: 'no entrys'});
                 }
                 else{
                     res.render('home', {    authSuccessMessage: displayedMsg, paths: row, 
@@ -388,7 +388,8 @@ app.post('/upload', function(req, res) {
                 sql = `INSERT INTO images (path, title, username, date) VALUES ("${dbpath}", "${title}", "${username}", date('now'));`
                 db.run(sql, function(err) {
                     if (err) {
-                        return res.render('upload', {msgUpload: 'Somthing went wrong'});
+                        console.error(err);
+                        return res.render('upload', {msgUpload: 'Something went wrong'});
                     } else {
                         file.mv(path);
                         return res.render('upload', {msgUpload: 'Upload Succed'});
@@ -399,7 +400,7 @@ app.post('/upload', function(req, res) {
             }
         });
     }else{
-        //file was to big
-        return res.render('upload', {msgUpload: 'File was to big!' });
+        //file ist zu groß
+        return res.render('upload', {msgUpload: 'File is too large!' });
     }
 });
