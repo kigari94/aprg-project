@@ -4,10 +4,12 @@
             <title>Start</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
             <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
+            <link rel="icon" type="image/svg+xml" href="icons/icon-blobfish-black.svg" sizes="any">
     </head>
     <body>
        <input type='checkbox' id='form-switch'>
             <form class="box" id='login-form' action="/login" method='POST'>
+              <img src="icons/icon-blobfish-white.svg" alt="logo" />
                 <h1 id="title">BLOBFISH</h1>
                 <h1>Login</h1>
               <input type="text" name="username" placeholder="Username" required maxlength="18">
@@ -36,7 +38,7 @@
               <input type="text" name="username" placeholder="Username" required maxlength="18">
               <input type="email" name="email" placeholder="Email" required maxlength="30">
               <input type="password" name="password" placeholder="Password" required maxlength="20">
-              <input type="password" name="re_password" placeholder="Re Password" required maxlength="20">
+              <input type="password" name="re_password" placeholder="Reenter Password" required maxlength="20">
               <input type='submit' value="Sign Up">
               <label for='form-switch'>Already member?</label>
             </form>

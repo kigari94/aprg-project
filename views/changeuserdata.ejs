@@ -17,6 +17,7 @@
             <input type='checkbox' id='deleteacc-switch'>
             <!--MAINSITE CHOOSE BAR-->
             <form class="box" id='main-form' method='POST'>
+                <img src="icons/icon-blobfish-white.svg" alt="logo" />
                 <h1 id="title">Userstuff</h1>
                 <p></p>
                 <label for='changeuser-switch'><span>User change</span></label>
@@ -49,6 +50,7 @@
             </form>
             <!--BOX CHANGEUSER-->
             <form class="box" id='changeuser-form' action="/change_username" method='POST'>
+                <img src="icons/icon-blobfish-white.svg" alt="logo" />
                 <h1 id="title">Userstuff</h1>
                 <p>Username:<%=username%></p>
                 <p><strong>Change username</strong><p>
@@ -59,16 +61,18 @@
             </form>
             <!--BOX CHANGE PASSWORD-->
             <form class="box" id='changepw-form' action="/change_password" method='POST'>
+                <img src="icons/icon-blobfish-white.svg" alt="logo" />
                 <h1 id="title">Userstuff</h1>
                 <p><strong>Change password</strong></p>
                 <input type="password" name="new_password" placeholder="New Password" required maxlength="30">
-                <input type="password" name="new_password_repeat" placeholder="RE Password" required maxlength="30">
+                <input type="password" name="new_password_repeat" placeholder="Reenter Password" required maxlength="30">
                 <input type="submit" value="Change">
               <label for='changepw-switch'>Back</label>
 
             </form>
             <!--BOX CHANGE EMAIL-->
             <form class="box" id='changeemail-form' action="/change_mailadress" method='POST'>
+              <img src="icons/icon-blobfish-white.svg" alt="logo" />
               <p></p>
                 <h1 id="title">Userstuff</h1>
                 <p2><%=email%></p2>
@@ -80,6 +84,7 @@
             </form>
             <!--BOX DELETE ACCOUNT-->
             <form class="box" id='deleteacc-form' action="/delete_account" method='POST'>
+              <img src="icons/icon-blobfish-white.svg" alt="logo" />
                 <h1 id="title">Userstuff</h1>
                 <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
               <input type="submit" value="DELETE">
