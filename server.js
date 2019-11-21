@@ -248,7 +248,7 @@ app.post('/change_username', function(req,res){
     let check = `SELECT * FROM users WHERE username == "${new_username}";`
     db.all(check, function(err,row){
         if(row.length != 0){
-            res.render('changeuserdata',{msgChangeUser: 'User has been already taken',
+            res.render('changeuserdata',{msgChangeUser: 'Username already taken',
                 username: req.session.username, 
                 email: req.session.email
             });
@@ -262,7 +262,7 @@ app.post('/change_username', function(req,res){
                     res.render('changeuserdata',{
                         username: new_username,
                         email: req.session.email,
-                        msgChangeUser: 'Succesfully Changed'
+                        msgChangeUser: 'Succesfully changed'
                     });
                 }
             });
@@ -282,7 +282,7 @@ app.post('/change_mailadress', function(req,res){
 
     db.all(check, function(err, row){
         if(row.length !=0){
-            res.render('changeuserdata',{msgChangeEmail: 'email has been already taken',
+            res.render('changeuserdata',{msgChangeEmail: 'Email already taken',
                 username: req.session.username, 
                 email: req.session.email});
         }else{
@@ -324,7 +324,7 @@ app.post('/change_password', function(req,res){
             }
             });
     }else{
-        res.render('changeuserdata',{msgChangePassword: 'Password did not matched re', 
+        res.render('changeuserdata',{msgChangePassword: 'Passwords don´t match. Please check your entry.', 
                     username: req.session.username,
                     email: req.session.email
                 });
@@ -345,7 +345,7 @@ app.post('/delete_account', function(req,res){
                     console.log(err);
                 }else
                 {
-                    res.render('start',{msgChangeDelete:'User was deleted'});
+                    res.render('start',{msgChangeDelete:'User deleted'});
                 }
             });
         }
@@ -384,7 +384,7 @@ app.post('/upload', function(req, res) {
                     dbpath = row.length.toString(10) + ".gif";
                 }
                 else{
-                    return res.render('upload', {msg: 'unzulässiger Datentyp'});
+                    return res.render('upload', {msg: 'Invalid data type'});
                 }
 
                 sql = `INSERT INTO images (path, title, username, date) VALUES ("${dbpath}", "${title}", "${username}", date('now'));`
@@ -394,9 +394,9 @@ app.post('/upload', function(req, res) {
                         return res.render('upload', {msgUpload: 'Something went wrong'});
                     } else {
                         file.mv(path);
-                        return res.render('upload', {msgUpload: 'Upload Succed'});
+                        return res.render('upload', {msgUpload: 'Upload successful!'});
                         //return res.render('home',{msg : 'UploadSucced'});
-                        //homeLoader(req,res,"Upload suceed!");
+                        //homeLoader(req,res,"Upload successful!");
                     }
                 });
             }
