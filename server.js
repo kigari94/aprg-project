@@ -75,27 +75,6 @@ function homeLoader(req,res, displayedMsg){
         });
 }
 
-// function homeLoader(req,res, displayedMsg, username, email){
-//     let sql = 'SELECT path FROM images;';
-//         db.all(sql, function(err, row){
-//             if(err){
-//                 //res.end(err);
-//                 console.error(err);
-//             }else{
-//                 if(row.length == 0)
-//                 {
-//                     console.log('no entrys')
-//                     res.render('home', {msgEntries: 'no entrys'});
-//                 }
-//                 else{
-//                     res.render('home', {    authSuccessMessage: displayedMsg, paths: row, 
-//                         username: username, 
-//                         email: email});
-//                 }
-//             }
-//         });
-// }
-
 // Ausgabe der Account-Page
 app.get('/account', function(req, res){
     if (!req.session.username){
@@ -190,7 +169,6 @@ app.post('/register', function(req, res) {
                         req.session.email = email;
 
                         res.redirect('/home');
-                        // homeLoader(req,res, "", username,email)
                     }
                 });
             }
@@ -219,8 +197,7 @@ app.post('/login', function(req, res){
                     req.session.username = row.username;
                     req.session.email = row.email;
                     
-                    res.redirect('/home');
-                    // homeLoader(req,res,"")            
+                    res.redirect('/home');           
                 }else{
                     res.render('start', {msgLogin: "Wrong username or password. Please try again."});           
                 }
@@ -395,8 +372,6 @@ app.post('/upload', function(req, res) {
                     } else {
                         file.mv(path);
                         return res.render('upload', {msgUpload: 'Upload Succed'});
-                        //return res.render('home',{msg : 'UploadSucced'});
-                        //homeLoader(req,res,"Upload suceed!");
                     }
                 });
             }
