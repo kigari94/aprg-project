@@ -55,7 +55,7 @@ app.get('/', function(req, res){
 });
 
 function homeLoader(req,res, displayedMsg){
-    let sql = 'SELECT path FROM images;';
+    let sql = 'SELECT path FROM images ORDER BY id ASC;';
         db.all(sql, function(err, row){
             if(err){
                 //res.end(err);
@@ -134,11 +134,15 @@ app.get('/who_we_are', function(req, res){
 });
 
 // 404 Error handling
-app.get('*', function(req, res){
+app.get('/404', function(req, res){
     res.render('error', {
         title: 'Error 404 Website not found',
         error: "Well, that didn't work... It seems like we can't find the website you requested."
     });
+});
+
+app.get('*', function(req, res){
+    res.redirect('/404');
 });
 
 // Auswertung der Registrierung
@@ -335,7 +339,7 @@ app.post('/upload', function(req, res) {
     const username = req.session.username;
     const title = req.body.title;
     const file = req.files.file;
-    const maxUpload = 1024 * 1024 * 10; // in bytes.
+    const maxUpload = 1024 * 1024 * 3; // in bytes.
     let path = __dirname + '/files/' + file.name;
 
 
@@ -378,6 +382,6 @@ app.post('/upload', function(req, res) {
         });
     }else{
         //file ist zu groß
-        return res.render('upload', {msgUpload: 'File is too large!' });
+        return res.render('upload', {msgUpload: 'File is larger than 3MB!' });
     }
 });

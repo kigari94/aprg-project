@@ -60,7 +60,7 @@
         <div id="wrap">
                 <div id="left_col">
                     <div id="left_col_box">
-                        <% for (let i = 0; i < paths.length; i++){ %>
+                        <% for (let i = 0 ; i < paths.length; i++){ %>
                             <img src="<%=paths[i].path%>">
                         <%}%>
                     </div>
@@ -70,10 +70,10 @@
     
                      <div id="right_col_box">
                         <h1>THE BEST</h1>
-                        <%let ran = Math.floor(Math.random()*700)%>
-                        <%let check = ran + 10 %>
+                        <%let ran = Math.floor(Math.random()*paths.length)%>
+                        <%let check = ran + 5 %>
                         <% for (let i = ran ; i < check; i++){ %>
-                            <img src="https://picsum.photos/id/<%=i%>/552/354">
+                            <img src="<%=paths[i].path%>">
                         <%}%>
                     </div>
                 </div>
