@@ -323,15 +323,17 @@ h1{
 }
 
 .sidenav a:hover,.sidenav input:hover{
-    color: #0678ad;
+    color: white;
 }
 /*mySidenav:hover (Wenn Sidenav mit der Maus berührt wurde)*/
 /* > (Dann führe das Ergebniss auf..) */
-/* .bottom_box (die Klasse Bottom_box aus) */
+/* .bottom_box (die Klasse Bottom_box aus) 
 #mySidenav:hover>.bottom_box, #mySidenav:hover>#bottom_box_user{
   color: lightblue;
   background-color: lightpink;
 }
+
+GUTE IDEE ABER ZU ZEITAUFWÄNDIG! der einfachheit halber entscheidung, die schrift hover auf weiß*/
 
 /* SIDENAV LOGOUT ONLY */
 .sidenavlogout a,.sidenavlogout input{
@@ -348,7 +350,7 @@ h1{
 }
 
 .sidenavlogout a:hover,.sidenavlogout input:hover{
-  color: #0678ad;
+  color: white;
   cursor: pointer;
 }
 
