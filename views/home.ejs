@@ -62,6 +62,7 @@
                     <div id="left_col_box">
                         <% for (let i = 0 ; i < paths.length; i++){ %>
                             <img src="<%=paths[i].path%>">
+                            <p></p>
                         <%}%>
                     </div>
                 </div>
@@ -70,10 +71,15 @@
     
                      <div id="right_col_box">
                         <h1>THE RANDOM:</h1>
-                        <!-- <%let ran = Math.floor(Math.random()*paths.length)%>
-                        <%let check = ran + 3 %> -->
-                        <% for (let i = ran ; i < 3; i++){ %>
-                            <img src="<%=paths[i].path%>">
+                        <%let ran = 0%>
+                        <%let list = []%>
+                        <% for (let i = 0 ; i < 3; i++){ %>
+                            <%ran = Math.floor(Math.random()*paths.length)%>
+                            <% while(list.includes(ran)){ %>
+                                <%ran = Math.floor(Math.random()*paths.length)%>
+                            <% }%>
+                            <%list.push(ran)%>
+                            <img src="<%=paths[ran].path%>">
                         <%}%>
                     </div>
                 </div>
