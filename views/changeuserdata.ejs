@@ -18,15 +18,15 @@
             <!--MAINSITE CHOOSE BAR-->
             <form class="box" id='main-form' method='POST'>
                 <img src="icons/icon-blobfish-white.svg" alt="logo" />
-                <h1 id="title">Userstuff</h1>
+                <h1 id="title">Userdata</h1>
                 <p></p>
-                <label for='changeuser-switch'><span>User change</span></label>
+                <label for='changeuser-switch'><span>Change Username</span></label>
                 <p></p>
-                <label for='changepw-switch'><span>Password change</span></label>
+                <label for='changepw-switch'><span>Change Password</span></label>
                 <p></p>
-                <label for='changeemail-switch'><span>Email change</span></label>
+                <label for='changeemail-switch'><span>Change Email</span></label>
                 <p></p>
-                <label for='deleteacc-switch'><span>Delete account</span></label>
+                <label for='deleteacc-switch'><span>Delete Account</span></label>
                 <% if (typeof msgChangeUser != "undefined") { %>
                   <div>
                       <p id="errorMessage"> <%= msgChangeUser %></p>
@@ -51,7 +51,7 @@
             <!--BOX CHANGEUSER-->
             <form class="box" id='changeuser-form' action="/change_username" method='POST'>
                 <img src="icons/icon-blobfish-white.svg" alt="logo" />
-                <h1 id="title">Userstuff</h1>
+                <h1 id="title">Userdata</h1>
                 <p>Username:<%=username%></p>
                 <p><strong>Change username</strong><p>
                 <input type="text" name="new_username" placeholder="New Username" required maxlength="18">
@@ -62,7 +62,7 @@
             <!--BOX CHANGE PASSWORD-->
             <form class="box" id='changepw-form' action="/change_password" method='POST'>
                 <img src="icons/icon-blobfish-white.svg" alt="logo" />
-                <h1 id="title">Userstuff</h1>
+                <h1 id="title">Userdata</h1>
                 <p><strong>Change password</strong></p>
                 <input type="password" name="new_password" placeholder="New Password" required maxlength="30">
                 <input type="password" name="new_password_repeat" placeholder="Reenter Password" required maxlength="30">
@@ -74,19 +74,19 @@
             <form class="box" id='changeemail-form' action="/change_mailadress" method='POST'>
               <img src="icons/icon-blobfish-white.svg" alt="logo" />
               <p></p>
-                <h1 id="title">Userstuff</h1>
+                <h1 id="title">Userdata</h1>
                 <p2><%=email%></p2>
                 <p><strong>Change email</strong></p>
                 <input type="email" name="new_email" placeholder="New E-Mail" required maxlength="30">
-                <input type="submit" value="Send me a mail!">
+                <input type="submit" value="Save">
               <label for='changeemail-switch'>Back</label>
               <p></p>
             </form>
             <!--BOX DELETE ACCOUNT-->
             <form class="box" id='deleteacc-form' action="/delete_account" method='POST'>
               <img src="icons/icon-blobfish-white.svg" alt="logo" />
-                <h1 id="title">Userstuff</h1>
-                <p>That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
+                <h1 id="title">Userdata</h1>
+                <p>You want to leave us? That´s very sad. We´ll miss you! Come back anytime to rejoin The Blobfish-Family.</p>
               <input type="submit" value="DELETE">
               <label for='deleteacc-switch'>Back</label>
 
