@@ -55,7 +55,7 @@ app.get('/', function(req, res){
 });
 
 function homeLoader(req,res, displayedMsg){
-    let sql = 'SELECT path FROM images ORDER BY id ASC;';
+    let sql = 'SELECT path FROM images ORDER BY id DESC;';
         db.all(sql, function(err, row){
             if(err){
                 //res.end(err);
